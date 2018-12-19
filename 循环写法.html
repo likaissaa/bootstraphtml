@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		/**
+		 * 循环写法
+		 * var data =[{"deviceId": 5,
+			"id": 40881,
+			"state": 0,
+			"temperature": 30.7,
+			"time": 1533112624000},{"deviceId": 5,
+			"id": 40881,
+			"state": 0,
+			"temperature": 30.7,
+			"time": 1533112624000}]
+			var a = data.map(function(f) {
+	                            return [f.time, f.temperature];
+	                        })
+			console.log(a)
+		 */
+		
+		  /**
+		   * 循环写法1
+		   *  var a = ["a","c","b"]
+		  for (var i=0; i<a.length; i++) {
+		  	console.log(a[i])
+		  }
+		  a.forEach(function(value) {
+		  	console.log(value)
+		  })
+		  
+		  for (var value of a) {
+		  	console.log(value)
+		  }
+		   * 
+		   * 
+		   * 
+		   * 
+		   */
+		  /**
+		   * 循环写法2
+		   * 
+		   * 
+		   */
+//		 var engines = new Set(["Gecko", "Trident", "Webkit", "Webkit"]);
+//for (var e of engines) {
+//console.log(e);
+//}
+//var es6 = new Map();
+//es6.set("edition", 6);
+//es6.set("committee", "TC39");
+//es6.set("standard", "ECMA-262");
+//for (var [name, value] of es6) {
+//console.log(name + ": " + value);
+//}
+
+// 私有属性 共有属性 es6 对象代理 解决私有对象问题
+ let Person = {
+    name: 'es6',
+    sex: 'male',
+    age: 15
+  };
+
+  let person = new Proxy(Person, {
+    get(target, key) {
+      return target[key]
+    },
+    set(target,key,value){
+      if(key!=='sex'){
+        target[key]=value;
+      }
+    }
+  });
+
+  console.table({
+    name:person.name,
+    sex:person.sex,
+    age:person.age
+  });
+
+try{
+	person.sex='female';
+}
+catch(e) {
+	console.log(e)
+}
+    
+
+	</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<button type="button" @click="clickme">切换图片</button>
+			<img  :src="myimg" />
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:'#app',
+			data: {
+				myimg:"img/img1.jpg"
+			},
+			methods: {
+				clickme() {
+					vm.myimg="img/air1.jpg"
+				}
+			}
+		})
+	</script>
+</html>

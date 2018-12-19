@@ -1,0 +1,40 @@
+@charset "utf-8";
+@import "z";
+@import "bl";
+.reset();
+
+// header 
+body {
+    background-color: @body_bgc
+}
+.header {
+    @h: 48px;
+    @border: 2px;
+    border-top: @border solid @link_hover;
+    height: @h;
+    background-color: #fff;
+    .logo {
+        height: 26px;
+        width: 80px;
+        background: url("../../../img/air1.jpg") left top no-repeat;
+        .fl();
+        margin: 8px 30px 13px 0;
+        a {
+            display: block;
+            height: 100%;
+            text-indent: -99em;
+        }
+    }
+    &_content {
+        width: 1240px;
+        .bc();
+        .clearfix();
+    }
+    .search {
+        .fl()
+    }
+    &Nav {
+        .fl()
+    }
+}
+

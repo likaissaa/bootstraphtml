@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bazel.build.css" />
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/vue2.js" ></script>
+	</head>
+	<body>
+		<!--关闭1-->
+		<div class="alert alert-success" role="alert">
+		    <button class="close"  data-dismiss="alert" type="button" >&times;</button>
+		    <p>恭喜您操作成功！</p>
+		</div>
+		<!--关闭2-->
+		<div class="alert alert-success" role="alert">
+		    <a href="#" class="close"  data-dismiss="alert" type="button" >&times;</a>
+		    <p>恭喜您操作成功！</p>
+		</div>
+		<!--关闭3 按钮会被关闭-->
+		<div class="alert alert-success" >
+			<h4>谨防被骗</h4>
+			<p>警告11111111111</p>
+			<button type="button" class="btn btn-danger" data-dismiss="alert">关闭</button>
+		</div>
+		
+		<!--关闭4--------按钮不会关闭-->
+		<div class="alert alert-success" id="myAlertss">
+			<h4>谨防被骗</h4>
+			<p>警告2222222222</p>
+		</div>
+		<button type="button" data-target="#myAlertss" class="btn btn-danger">关闭</button>
+		<!--关闭5--------js 触发警告框-->
+		<div class="alert alert-success" id="myAlert">
+			<h4>谨防被骗</h4>
+			<p>警告3333333333333333333333333333333</p>
+			<button type="button" id="close"  class="btn btn-danger">关闭</button>
+		</div>
+			
+		<script>
+			$("#close").on("click",function(){
+				$(this).alert("close");
+			})
+		</script>
+	</body>
+</html>

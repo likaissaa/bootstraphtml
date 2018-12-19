@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bazel.build.css" />
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/vue2.js" ></script>
+		<title></title>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<button type="button" @click="backto">backto</button>
+		</div>
+	</body>
+	<script>
+		var login = (username , password) => {
+			var param = {
+				username: username,
+				password: password
+			}
+			return loginrequest('login',param).then(res => {
+				return Promise.resolve(res)
+			})
+			.catch(err =>{
+				return Promise.reject(err);
+			})
+		}
+		
+		var loginrequest = (type, param) => 
+			new Promise((resolve,reject) =>{
+				if(true) {
+					resolve("hello world");
+				} else {
+					reject(new Error("hehe"))
+				}
+			})
+			
+			login("11","22").then(res => console.log(res)).catch(err => console.log(err))
+	</script>
+</html>

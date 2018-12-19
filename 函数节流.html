@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script>
+		// 冷静对待
+	var throttle = function(fn, intercal) { 
+		var _self = fn,timer, firstTime = true; // 抓取回调函数，定时器，以及是否头一次
+		return function() {
+			var arg = arguments // 参数保留
+			_me = this // 指向保留
+			if(firstTime){ // 首次执行就让它执行 不用定时
+				_self.apply(_me,args)
+				return firstTime=false;
+			}
+			if(timer) {
+				return false
+			}
+			timer = setTimeout(function(){
+				clearTimeout(timer)
+				timer= null;
+				_self.apply(_me,args)
+
+			},interval || 500)
+			
+		}
+	}
+	
+	window.resize = throttle(function() {
+			console.log(111)
+	})
+	</script>
+</html>

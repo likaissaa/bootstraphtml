@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bazel.build.css" />
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/vue2.js" ></script>
+		<title></title>
+	</head>
+	<body>
+		<!--如果没有data-ride  触发自动轮播 可以用 js方法
+			$().carousel();
+		-->
+		<div id="myCarousel" class="carousel slide">
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner">
+				<div class="item active">
+					<img src="http://images3.c-ctrip.com/rk/201407/ll580x145.jpg" />
+					<div class="carousel-caption">
+						<h4>标题一</h4>
+						<p>图片一内容简介</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="http://images3.c-ctrip.com/dj/201408/zj/zj_580145.jpg" />
+					<div class="carousel-caption">
+						<h4>标题二</h4>
+						<p>图片二内容简介</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="http://images3.c-ctrip.com/rk/201403/yfdd580145a.png" />
+					<div class="carousel-caption">
+						<h4>标题三</h4>
+						<p>图片三内容简介</p>
+					</div>
+				</div>
+			</div>
+			<a class="left carousel-control" href="#myCarousel">&lsaquo;</a>
+			<a class="right carousel-control" href="#myCarousel">&rsaquo;</a>
+		</div>
+	</body>
+	<script>
+		$(".carousel").carousel({
+			interval:1000
+		});
+		 $("#slidershow a.left").click(function(){
+        $(".carousel").carousel("prev");
+    });
+    $("#slidershow a.right").click(function(){
+        $(".carousel").carousel("next");
+    });
+	</script>
+</html>

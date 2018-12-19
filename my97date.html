@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="js/date/My97DatePicker/skin/red/datepicker.css" />
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js" ></script>
+		<script type="text/javascript" src="js/date/My97DatePicker/WdatePicker.js" ></script>
+		<style>
+			.haha{
+			margin-top:10px;
+			}
+		</style>
+	</head>
+	<body>
+		<input id="dll" type="text" onClick="WdatePicker()" />
+	<br />
+	<div class="haha">示例2</div>
+	<input id="d12" type="text"/>
+	<img onclick="WdatePicker({el:'d12'})" src="img/air1.jpg/" width="16" height="22" align="absmiddle">
+	<br />
+	<div class="haha">示例3 支持周显示</div>
+	<input id="d121" type="text" onclick="WdatePicker({isShowWeek:true,highLineWeekDay:false})" /><br />
+	<div class="haha">示例4 自定义弹出显示 position</div>
+	<input class="Wdate" type="text" id="d16" onclick="WdatePicker({position:{left:10,top:10}})"/><br />
+	<div class="haha">星期一作为第一天</div>
+	<input class="Wdate" type="text" id="d16" onclick="WdatePicker({firstDayOfWeek:1})"/><br />
+	
+	<div class="haha">第二波--直接当日历来使用</div>
+	<div id="div1"></div>
+	<div class="haha">将日期返回到span 中</div>
+	<span id="demospan">2008-01-01</span>
+	<img onClick="WdatePicker({el:'demospan'})" src="img/air1.jpg" width="16" height="22" align="absmiddle" style="cursor:pointer"/>
+	<br />
+	<div class="haha">默认的起始日期</div>
+	<input type="text" id="d221" onclick="WdatePicker({startDate:'1980-05-01'})"/><br />
+	<div class="haha">当日期框无论是何值,始终使用1980-05-01 作为起始日期</div>
+	
+	<input type="text" id="d222" onclick="WdatePicker({startDate:'1980-05-01',alwaysUseStartDate:true})" />
+	<div class="haha">年月日使用当年当月的1日,时分秒使用00:00:00 作为起始时间</div>
+	<input type="text" id="d233" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUserStartDate:true})"/><br />
+	
+	<div class="haha">年月日时分秒</div>
+	<input type="text" id="d241" onclick="WdatePicker({dateFmt:'yyyy年MM月dd日 HH时mm分ss秒',autoPickDate:true})" class="Wdate" style="width:300px;border:1px solid red;"/><br
+	 />
+	<div class="haha">时分秒</div>
+	<input type="text" id="242" onclick="WdatePicker({skin:'whyGreen',dateFmt:'H:mm:ss'})" class="Wdate"/><br /><br />
+	<div class="haha">取得系统可识别的坐标值 --作为参考还行 实际项目中 应该没有这种情况</div>
+	<input id="d244" type="text" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy年M月d日',vel:'d244_2'})"/>
+	<input id="d244_2" type="text" /><br /><br />
+	<div class="haha">返回星期，月，日，年</div>
+	
+	<input type="text" id="d245" onclick="WdatePicker({dateFmt:'DD,MMMM d,yyyy'})" class="Wdate"/><br />
+	<div class="haha">双月日历功能</div>
+	<input type="text" onclick="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})" /><br />
+	<div class="haha">错误------超出限制范围的日期被认为是一个不合法的日期</div>
+	<input type="text" onclick="WdatePicker({errDealModel:1,maxDate:'2000-01-10'})"<br /><br />
+		
+		<div class="haha">错误------无效天和无效日期功能限制日期也被认为是一种不合法的日期</div>
+		<input type="text" onclick="WdatePicker({errDealModel:1,maxDate:'2000-01-10',disabled:true})"  /><br />
+	
+	<div class="haha">语言支持</div>
+	<input id="d311" class="Wdate" type="text" onclick="WdatePicker({lang:'zh-tw'})"/>
+	<input id="d312" class="Wdate" type="text" onclick="WdatePicker({lang:'en'})"/>
+	<input id="d313" class="Wdate" type="text" onclick="WdatePicker({lang:'zh-cn'})"/>
+	<div class="haha">颜色 --抽空进行一次大的样式审查</div>
+	<input id="d322" class="Wdate" type="text" onclick="WdatePicker({skin:'red'})"/>
+	
+	
+	<div class="haha">限制日期的范围是2006-09-10   到2008-12-20</div>
+	<input id="d411" class="Wdate" type="text" onclick="WdatePicker({skin:'red',minDate:'2006-09-10',maxDate:'2008-12-20'})" />
+	
+	
+	<br />
+	<br />
+	
+	
+	<div class="haha">限制日期和时分秒  2008-3-8 11:30:00 到 2008-3-10 20:59:30</div>
+	<input type="text" class="Wdate" id="d412" onclick="WdatePicker({skin:'red',dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2008-03-08',maxDate:'2008-03-10 20:59:30'})" value="2008-03-09 11:00:00"/>
+	<div class="haha">限制08年2月到10月</div>
+	<input type="text" class="Wdate" id="d413" onclick="WdatePicker({dateFmt:'yyyy年M月',minDate:'2008-2',maxDate:'2008-10',skin:'red'})"/><br />
+	<div class="haha">限制时分秒</div>
+	<input type="text" class="Wdate" id="d414" onclick="WdatePicker({dateFmt:'H:mm:ss',minDate:'8:00:00',maxDate:'11:30:00'})"/>
+	<div class="haha">只能选择今天以前的日期</div>
+	<input id="d421" class="Wdate" type="text" onclick="WdatePicker({skin:'red',maxDate:'%y-%M-%d'})"/><br />
+	<br />
+	<div class="haha">只能选择今天以后的日期</div>
+	<input type="text" id="d422" class="Wdate" onclick="WdatePicker({minDate:'%y-%M-{%d+1}'})"/>
+	
+	<div class="haha">只能选择本月的1号 和本月最后一天</div>
+	
+	<input id="d423" class="Wdate" type="text" onclick="WdatePicker({minDate:'%y-%M-01',maxDate:'%y-%M-%ld'})"/><br />
+	<div class="haha">只能选择 今天7:00:00 ,明天21:00:00</div>
+	<input id="d424" class="Wdate" type="text" onclick="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',minDate:'%y-%M-%d 7:00:00',maxDate:'%y-%M-{%d+1} 21:00:00'})" /><br />
+	
+	<br />
+	<div class="haha">前面的日期不能大于后面的日期 并且最大的日期不能 超过2020-10-01-</div>
+	
+	<input id="d4311" class="Wdate" type="text" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'d4312\')||\'2020-10-01\'}'})"/> 
+<input id="d4312" class="Wdate" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'d4311\')}',maxDate:'2020-10-01'})"/>
+<div class="haha">前面的日期+3天  不能大于后面的日期</div>
+<input type="text" class="Wdate" id="d4321" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'d4322\',{d:-3});}'})"/>
+<input type="text" class="Wdate" id="d4322" onclick="WdatePicker({minDate:'#F{$dp.$D(\'d4321\',{d:3});}'})"/><br />
+	
+	<div class="haha">前面的日期+3月零2天    不能大于  后面的日期  且 前面日期都不能大于2020-4-3 减去  3月 零2天 后面日期  不能大于2020-4-3   减去三月零2天  后面日期 不能大于  2020-4-3</div>
+	
+	<input type="text" class="Wdate" id="4331" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'d4332\',{M:-3,d:-2})||$dp.$DV(\'2020-4-3\',{M:-3,d:-2})}'})" />
+	<input type="text" class="Wdate" id="4332" onclick="WdatePicker({minDate:#F{$dp.$D(\'d4331\')}})"
+	<br /><br />
+	<div class="haha">根据js 自定义 YMD  详情+一点js</div>
+	<input type="text" class="Wdate" id="d434" onclick="var date=randomDate();WdatePicker({minDate:date,maxDate:date})"/>
+	<br />
+	<div class="haha">无效周日</div>
+	<input id="d422" type="text" class="Wdate" onclick="WdatePicker({disabledDays:[6]})" />
+	<div class="haha">无效周六周日</div>
+	<input id="d441" type="text" class="Wdate" onclick="WdatePicker({disabledDays:[0,6]})"/>
+	<div class="haha">
+		无效示例
+		['2008-02-01','2008-02-29'] 表示禁用 2008-02-01 和 2008-02-29
+		['2008-..-01','2008-02-29'] 表示禁用 2008-所有月份-01 和 2008-02-29
+		['200[0-8]]-02-01','2008-02-29'] 表示禁用 [2000至2008]-02-01 和 2008-02-29
+		['^2006'] 表示禁用 2006年的所有日期
+		此外,您还可以使用 %y %M %d %H %m %s 等变量, 用法同动态日期限制 注意:%ld不能使用
+		['....-..-01','%y-%M-%d'] 表示禁用 所有年份和所有月份的第一天和今天 
+		['%y-%M-{%d-1}','%y-%M-{%d+1}'] 表示禁用 昨天和明天
+		当然,除了可以限制日期以外,您还可以限制时间
+		['....-..-.. 10\:00\:00'] 表示禁用 每天10点 (注意 : 需要 使用 \: )
+	</div>
+	<div class="haha">禁用每个月的 5日 15 日 25 日</div>
+	<input id="d451" type="text" class="Wdate" onclick="WdatePicker({disabledDated:['5$']})" />
+	<br />
+	
+	<div class="haha">禁用所有遭遇2000-01-01 的日期</div>
+	<input type="text" id="d452" class="Wdate" onclick="WdatePicker({disabledDates:['^19']})" />
+	<br />
+		
+	<div class="haha">禁用某一些时间段的 时间 好像很牛逼的样ZI ，比如我只用 本月的1-3 8-*10 16-24 26.27 .29-月末</div>
+	<div id="d453" type="text" class="Wdate" onclick="WdatePicker({minDate:'%y-%M-01',maxDate:'%y-%M-%ld',disbaledDates:['0[4-7]$','1[1-5]$','2[58]$']})"/><br
+		 />
+	
+	<div class="haha">minDate/maxDate disabledDays（禁用星期） disabledDates（禁用日子） </div>
+	<input type="text" id="d454" class="Wdate" onclick="WdatePicker({minDate:'%y-%M-01',maxDate:'%y-%M-%ld',disabledDates:['0[4-7]$','1[1-5]$','2[58]'],disabledDays:[1,3,6]})" />
+	<br />
+	<br />
+	<div class="haha">当前 代码有问题 仅仅参考使用</div>
+	<input type="text" id="d2a25" type="text" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',disabledDates:['%y-%M-%d{%H-1}\:..\:..','%y-%M-%d{%H+1}\:..\:..']})"  />
+	<br />
+	<div class="haha">只启用 5 - 15 -25日</div>
+	<input id="d46" type="text" class="Wdate" onclick="WdatePicker({opposite:true,disabledDates:['5$']})"/>
+	<br />
+		
+	<div class="haha">高亮周一-周五 </div>
+	<input id="d471" type="text" class="Wdate" onclick="WdatePicker({specialDays:[1,5]})"/>
+	
+	<br />
+	<div class="haha">高亮每月1 号到15号  </div>
+	<input id="d472" type="text" class="Wdate" onclick="WdatePicker({specialDates:['....-..-01','....-..-15']})"/>
+	<br />
+	<br />
+	<div class="haha">只允许选择本月的9:00:00 到17:30:30;</div>
+	<input id="d482" type="text" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-%d',maxDate:'%y-%M-%ld',minTime:'09:00:00',maxTime:'17:30:00'})"/>
+	
+	<br />
+	<div class="haha">自定义事件</div>
+	<input type="text" id="5421" onclick="WdatePicker({onpicking:function(dp){if(!confirm('日期框原来的值为: '+dp.cal.getDateStr()+', 要用新选择的值:' + dp.cal.getNewDateStr() + '覆盖吗?')) return true;}})" class="Wdate"/>
+	<div class="haha">使用onpicked 实现日期选择联动</div>
+	<br/>
+	<input id="d5221" class="Wdate" type="text" onclick="var d5222=$dp.$('d5222');WdatePicker({onpicked:function(){d5222.click();},maxDate:'#F{$dp.$D(\'d5222\')}'})"/>
+	至
+	<input id="d5222" class="Wdate" type="text"	onclick="WdatePicker({minDate:'#F{$dp.$D(\'d5221\')}'})"	/>
+	
+	<br />
+	<div class="haha">选择的值拆分到文本框</div>
+	<input type="text" id="d523_y" size="5"/> 年
+<input type="text" id="d523_M" size="3"/> 月
+<input type="text" id="d523_d" size="3"/> 日
+<input type="text" id="d523_HH" size="3"/> 时
+<input type="text" id="d523_mm" size="3"/> 分
+<input type="text" id="d523_ss" size="3"/> 秒 
+<input type="text" id="d523" />
+<img onclick="WdatePicker({el:'d523',dateFmt:'yyyy-MM-dd HH:mm:ss',onpicked:pickedFunc})" src="img/air1.jpg" width="16" height="22" align="absmiddle" style="cursor:pointer"/>
+	<br/>
+	
+	<div class="haha">onclearing 和oncleared 事件</div>
+	<div class="haha">点击清理时</div>
+	<input type="text" class="Wdate" id="5331" onclick="WdatePicker({onclearing:function(){if(!confirm('日期框的值:'+this.value+',确实要清空吗?'))return true;}})"/>
+	<br />
+		
+	<div class="haha">点击清理后</div>
+	<input type="text" class="Wdate" id="d532" onclick="WdatePicker({oncleared:function(dp){alert('当前日期所选择的月份为:'+dp.cal.date.M);}})"/>
+	
+	<div class="haha">清除前和清除后结合</div>
+	<input type="text" class="Wdate" id="d533" onclick="d533_focus(this)" />
+	
+	<script>
+		WdatePicker({eCont:'div1',onpicked:function(dp){alert('你选择的日期是:'+dp.cal.getDateStr())}});
+		
+		
+		/*根据js 自定义 YMD  详情+一点js*/
+		function randomDate(){
+			var Y = 2000 + Math.round(Math.random() * 10);
+			var M = 1 + Math.round(Math.random() * 11);
+			var D = 1 + Math.round(Math.random() * 27);
+			return Y+'-'+M+'-'+D;
+		}
+		
+		function pickedFunc(){
+$dp.$('d523_y').value=$dp.cal.getP('y');
+$dp.$('d523_M').value=$dp.cal.getP('M');
+$dp.$('d523_d').value=$dp.cal.getP('d');
+$dp.$('d523_HH').value=$dp.cal.getP('H');
+$dp.$('d523_mm').value=$dp.cal.getP('m');
+$dp.$('d523_ss').value=$dp.cal.getP('s');
+}
+		
+		/*清除前和清除后结合*/
+			function d533_focus(element){
+				var clearingFunc = function(){
+					if(!confirm('日期框的值为:'+this.value+',确实要清空吗？'))return true;
+				}
+			
+				var clearedFunc = function(){
+					alert("日期已经被清空了哈哈哈");
+				}
+				WdatePicker({
+					el:element,
+					onclearing:clearingFunc,
+					oncleared:clearedFunc
+				})
+			}
+			
+			
+	</script>
+	</body>
+</html>

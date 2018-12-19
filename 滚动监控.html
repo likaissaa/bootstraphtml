@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>下拉菜单--属性声明式方法（一）</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<style>
+.scrollspy-example{
+    height:500px;
+    font-size:20px;
+    overflow:auto;
+    position:relative;
+}
+</style>
+</head>
+<body>
+<body>
+    <div class="navbar navbar-default maodian navbar-fixed-top" id="maodian">
+        <ul class="nav navbar-nav">
+            <li><a href="#index">首页</a></li>
+            <li class="active dropdown">
+                <a href="#" data-toggle="dropdown">新闻<span></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#one">111</a></li>
+                    <li><a href="#two">222</a></li>
+                    <li><a href="#three">333</a></li>
+                </ul>
+            </li>
+           
+            <li><a href="#ztc">直通车</a></li>
+            <li><a href="#st">社团</a></li>
+             <li><a href="#gywm">关于我们</a></li>
+            
+        </ul>
+    </div>
+    <div data-target="#maodian" data-spy="scroll" style="height:500px; overflow: auto; position:relative;">
+    	<h3 id="index">1</h3>
+    	<p>nihao </p>
+    	<p>nihao </p>
+    	<p>nihao </p>
+    	<p>nihao </p>
+    	<p>nihao </p>
+    	<p>nihao </p>
+    	<h3 id="one">2</h3>
+    	<p>one</p>
+    	<p>one</p>
+    	<p>one</p>
+    	<p>one</p>
+    	<p>one</p>
+    	<h3 id="two">3</h3>
+    	<p>two</p>
+    	<p>two</p>
+    	<p>two</p>
+    	<p>two</p>
+    	<h3 id="three">3-3</h3>
+    	<p>three three</p>
+    	<p>three three</p>
+    	<p>three three</p>
+    	<p>three three</p>
+    	<p>three three</p>
+    	<p>three three</p>
+    	<h3 id="ztc">直通车</h3>
+    	<p>ztc</p>
+    	<p>ztc</p>
+    	
+    	<p>ztc</p>
+    	<p>ztc</p>
+    	
+    	
+    	<p>ztc</p>
+    	<h3 id="st">社团</h3>
+    	<p>st55555555</p>
+    	<p>st55555555</p>
+    	<p>st55555</p>
+    	<p>st5555555</p>
+    	<p>st55555</p>
+    	<p>st55555555</p>
+    	<p>st55555555</p>
+    
+    	<h3 id="gywm">关于我们</h3>
+    	<p>gywm</p>
+    	<p>gywm</p>
+    	<p>gywm</p>
+    	<p>gywm</p>
+    </div>
+   
+</body>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
+</body>
+</html>

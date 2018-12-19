@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<title></title>
+		<!--<link rel="stylesheet" href="css/bootstrap.css/bootstrap-theme.min.css" />-->
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap.min.css" />
+
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/vue2.5.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+	</head>
+
+	<body>
+		12
+	</body>
+	<script>
+//		function Point(x, y) {
+//		  this.x = x;
+//		  this.y = y;
+
+//		}
+//
+//			Point.prototype.toString = function () {
+//			  return '(' + this.x + ', ' + this.y + ')';
+//			};
+//			
+//			var p = new Point(1, 2);
+//			console.log(p)
+//		class Point {
+//			constructor(x, y) {
+//				this.x =x 
+//				this.y =y 
+//			}
+//			toString() {
+//				console.log('('+this.x+','+ this.y +')')
+//				return '('+this.x+','+ this.y +')'
+//			}
+//		}
+		
+//		var p= new Point(2,4);
+//		p.toString()
+		
+//		class B {
+//			constructor(x, y) {
+//				this.x =x 
+//				this.y =y 
+//			}
+//			toStirng() {
+//				console.log('('+this.x+','+ this.y +')')
+//			}
+//		}
+//		var b = new B (2,4)
+//		
+//		var a = Object.getOwnPropertyNames(B.prototype)
+//		console.log(a)
+
+		// 工厂模式
+//		function createPerson(name, age, job) {  
+//			var o = new Object()
+//			o.name = name;
+//			o.age = age;
+//			o.job = job;
+//			return o
+//		}
+//		var person1 = createPerson("ganni", 29, "software engineer");
+//		console.log(person1)
+		
+		// 构造函数u 对象
+		function Person(name, age, job) {
+			this.name = name;
+			this.age = age;
+			this.job = job;
+			this.sayName = function() {
+//				alert(this.Name)
+			}
+		}
+		
+//		var person1 = new Person('Nicholas', 29, "software engineer");
+//		var person2 = new Person('Greg', 27, "Doctor");
+//		console.log(person1)
+//		console.log(Person.prototype)
+//		console.log(person1.constructor)
+//		function Person(name, age, job) {
+//			this.name = name
+//			this.age = age
+//			this.job = job
+//			this.sayName = sayName
+//		}
+//		
+//		function sayName(){
+//			alert(this.name)
+//		}
+//		var person1 = new Person("ganni", 20 , "daini")
+//		console.log(person1.sayName())
+//		var person2 = new Person("dani", 22, "chani");
+//		console.log(person2.sayName())
+//		function Person() {
+//			
+//		}
+//		Person.prototype.name="Nicholas";
+//		Person.prototype.age = 19;
+//		Person.prototype.job ="Software Engineer";
+//		Person.prototype.sayName = function() {
+//		}
+//		var person1 = new Person();
+//		person1.sayName();
+//		var  person2 = new Person();
+//		person1.sayName();
+//		person1.name ="new name haha "
+//		var keys = Object.getOwnPropertyNames(Person.prototype)
+//		
+//		console.log(person1)
+//		console.log(Person.prototype.constructor)
+//		function Person1() {
+//			
+//		}
+		
+//		Person1.prototype = {
+//			name: 'gannima',
+//			age: 29 ,
+//			job: "caoniye demo",
+//			sayName: function() {
+//				console.log(this.name)
+//			}
+//		}
+//Person1.prototype.name="ganni"
+//		
+//		var friend = new Person1()
+//		console.log(friend.constructor == Person1)
+
+	function Point(x, y) {
+		this.x = x;
+		this.y = y;
+	}
+	Point.prototype.toString = function (){
+		return  '(' + this.x + ', ' + this.y + ')';
+	}
+	
+	var p = new Point(1, 2)
+	console.log(p)
+	console.log(p.constructor)
+	console.log(Point)
+	console.log(Point.prototype)
+	console.log(Point.prototype.constructor)
+	console.log(p.constructor == Point.prototype.constructor)
+	
+	class Point {
+		constructor(x, y) {  // 构造函数
+			this.x = x;
+			this.y = y;
+		}
+		
+		toString() {
+			return '(' + this.x + ',' + this.y +')'
+		}
+	}
+	</script>
+
+</html>
+<!--
+	
+	
+	
+export default class Song {
+  constructor({id, mid, singer, name, album, duration, image, url}) {
+    this.id = id
+    this.mid = mid
+    this.singer = singer
+    this.name = name
+    this.album = album
+    this.duration = duration
+    this.image = image
+    this.filename = `C400${this.mid}.m4a`
+    this.url = url
+  }
+  
+  function createSong(musicData) {
+  return new Song({
+    id: musicData.songid,
+    mid: musicData.songmid,
+    singer: filterSinger(musicData.singer),
+    name: musicData.songname,
+    album: musicData.albumname,
+    duration: musicData.interval,
+    image: `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000`,
+    url: `http://isure.stream.qqmusic.qq.com/C100${musicData.songmid}.m4a?fromtag = 32`
+  })
+}
+-->
+
+<!--
+function employee(name,job,born)
+{
+this.name=name;
+this.job=job;
+this.born=born;
+}
+
+var bill=new employee("Bill Gates","Engineer",1985);
+
+document.write(bill.constructor);-->

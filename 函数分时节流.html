@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var timeChunk = function(ary, fn, count) {
+			var obj,t;
+			var len = ary.length // 数据长度
+			var start = function(){
+				for(var i=0; i< Math.min(count|| 1, ary.length);i++) {
+					var obj = ary.shift() // 对象切割数据第一个
+					fn(obj) // 封装常见节点的回调函数
+				}
+			}
+			return function() {
+				t = setInterval(function() {
+					if(ary.length == 0) {
+						return clearInterval(t)
+					}
+					start();
+				}, 2000)
+			}
+		}
+		
+		var ary = [];
+		for( var i=1;i <=100;i++) {
+			ary.push(i);
+		}
+		var renderFriendList =timeChunk(ary, function(n) {
+			var div = document.createElement('div');
+				console.log(n)
+				div.innerHTML = i;
+				document.body.appendChild(div);
+		},10)
+		
+		
+	
+//		renderFriendList()
+		
+		// 多重返回函数，控制数据慢慢减去1 中间定义函数  2秒 减去5 一次 慢慢减去
+		var deduct = function(num,fn) {
+			var obj,t;
+			var fuck = function() {
+				for(var i=0; i< 1;i++) {
+					num= num-5;
+					fn(num);
+				}
+			}
+			return function() {
+				t = setInterval(function() {
+					if(num < 0) {
+						return clearInterval(t)
+					}
+					fuck();
+				}, 2000)
+				
+			}
+		}
+		deduct(1000,function(num) {
+			console.log(num)
+		})()
+	</script>
+</html>

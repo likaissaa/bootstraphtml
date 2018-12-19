@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.div2{border:1px solid red}
+			
+		</style>
+		<script type="text/javascript" src="js/lib/jsoncookie.js" ></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	
+	<body>
+	<div id="app">
+		<div>{{userinfo.name}}</div>
+		<div v-on:click="changeaddress" v-bind:class="['div2']">{{userinfo.address}}</div>
+    </div>
+		<script>
+			var vm=new Vue({
+				el:'#app',
+				data:{
+					userinfo:
+					{
+						name:'456',
+						address:'123'
+					}
+				},
+				methods:
+				{
+					changeaddress:function()
+					{
+					var data={addressstr:vm.userinfo.address};
+		/*			setjsoncookie(data);*/
+				    //传一次值，传一次对象
+				    sessionStorage.setItem("addressstr",JSON.stringify(vm.userinfo.address));//上面的jsoncookie可以 并且当前的session也可以
+				    alert(JSON.stringify(vm.$data))
+					window.location.href="testeclipse2.html";
+					}
+				},
+			})
+			window.onload=function(){
+			//get缓存
+		/*	var data=sessionStorage.getItem("cacheuserinfo");
+			alert(data);*/
+			 //如果有 定义的当前的缓存的data为当前data;
+			   //确定地址是否传入。 get
+			    //如果有那么我就取出覆盖，(session测试或local测试)
+			 //如果数据不为空 赋值后记得清除缓存
+			//no get缓存
+			//运行赋值函数
+			  var newaddress=sessionStorage.getItem("testaddress");
+			  if(newaddress!=null)
+			  {
+			  vm.userinfo.address=JSON.parse(newaddress);
+              sessionStorage.removeItem("testaddress");
+			  }
+			  else
+			  {
+			  	alert("address为空"); 
+			  }
+			  sessionStorage.removeItem("cacheuserinfo");
+/*			}
+			else
+			{
+			getSth();	
+			} */
+			
+			}
+			function getSth()
+			{
+				vm.userinfo.name="liyehui";
+				vm.userinfo.address="厦门";
+			}
+		</script>
+	</body>
+</html>

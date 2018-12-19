@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/cityselect/vue2.5.js" ></script>
+		<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+
+	</head>
+	<body>
+		<div id="app">
+			<!--第一种
+				xaixs：
+				类型 datetim　
+				间隔 tickinterval 毫秒
+				时间格式化 datetimelabelformats
+			-->
+			<button type="button" @click = "clickme">点击我</button>
+			<button type="button" @click = "clickme2">点击我2</button>
+			<button type="button" @click = "clickme3">点击我3</button>
+			<div ref="container" style="width: 1000px;height:400px;"></div>
+
+		</div>
+	</body>
+	<script>
+		var vm = new Vue({
+			el:'#app',
+			data: {
+				line: ''
+			},
+			methods: {
+				clickme() {
+					var options = {
+                        chart: {
+                            type: 'line'                          //指定图表的类型，默认是折线图（line）
+                        },
+                        title: {
+                            text: '温度折线图'                 // 标题
+                        },
+                        tooltip: {
+//                          xDateFormat: '%Y-%m-%d',
+//                          shared: true
+							formatter: function () { 
+								console.log(this.x)
+								console.log(new Date(this.x))
+								console.log(Highcharts.dateFormat('%Y-%m-%d %H:%M:%S',this.x))
+		                   		return Highcharts.dateFormat('%m-%d',this.x)+'<br/>节能率:' + this.y.toFixed(2);  
+		               		}  
+                        },
+                        xAxis: {
+                            type: 'datetime',
+                            dateTimeLabelFormats: {
+                                day: '%Y-%m-%d'
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: '吃水果个数'                // y 轴标题
+                            }
+                        },
+                        series: [{                              // 数据列
+                            name: '温度',                        // 数据列名
+                            data: [[1527832563000,29.9], [1527918791000,71.5], [1528005191000,106.4]],
+                        }],
+                    };
+                    // 图表初始化函数
+
+                    vm.line = Highcharts.chart(vm.$refs.container, options);
+				},
+				clickme2() {
+					
+					var options = {
+                        chart: {
+                            type: 'line'                          //指定图表的类型，默认是折线图（line）
+                        },
+                        title: {
+                            text: '温度折线图2'                 // 标题
+                        },
+                        tooltip: {
+                            xDateFormat: '%Y-%m-%d',
+                            shared: true
+                        },
+                        xAxis: {
+                            type: 'datetime',
+                            tickInterval: 2 * 24 * 3600 * 1000,
+//                          dateTimeLabelFormats: {
+//                              day: '%Y-%m-%d'
+//                          }
+                        },
+                        yAxis: {
+                            title: {
+                                text: '吃水果个数'                // y 轴标题
+                            }
+                        },
+                        series: [{
+							data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+							pointInterval: 24 * 3600 * 1000  // 数据没有x轴的时候pointer interval 就是他的 x 轴 的一个间隔 pointstart 就是设置一个 开始点
+						}]
+                    };
+                    // 图表初始化函数
+					Highcharts.dateFormat('%Y-%m-%d %H:%M:%S')
+                    vm.line = Highcharts.chart(vm.$refs.container, options);
+				},
+				clickme3() {
+					var options = {
+                        chart: {
+                            type: 'line'                          //指定图表的类型，默认是折线图（line）
+                        },
+                        title: {
+                            text: '温度折线图3'                 // 标题
+                        },
+                        tooltip: {
+                            xDateFormat: '%Y-%m-%d',
+                            shared: true
+                        },
+                        xAxis: {
+                          type: 'datetime',
+							dateTimeLabelFormats: {
+								day: '%e of %b %W'
+							}
+                        },
+                        yAxis: {
+                            title: {
+                                text: '吃水果个数'                // y 轴标题
+                            }
+                        },
+                        series: [{
+			data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+			pointStart: Date.UTC(2010, 0, 1),
+			pointInterval: 3 * 24 * 3600 * 1000 // one day
+		}]
+                    };
+                  
+                   
+                    vm.line = Highcharts.chart(vm.$refs.container, options);
+				}
+			},
+			mounted:function() {
+									
+			}
+		})
+		var data =[{"deviceId": 5,
+"id": 40881,
+"state": 0,
+"temperature": 30.7,
+"time": 1533112624000},{"deviceId": 5,
+"id": 40881,
+"state": 0,
+"temperature": 30.7,
+"time": 1533112624000}]
+		
+		var a = data.map(function(f) {
+                            return [f.time, f.temperature];
+                        })
+		console.log(a)
+	</script>
+</html>

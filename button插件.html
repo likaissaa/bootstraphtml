@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+		<meta charset="UTF-8">
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bazel.build.css" />
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/vue2.js" ></script>
+		<title></title>
+	</head>
+	<body>
+		<div>
+			<button class="btn btn-primary"data-loading-text="正在加载中,请稍等..." type="button" id="loaddingBtn" disabled>加载</button>
+			<script>
+				 $(function(){
+    //这里#myButton 要加引号
+    $('#loaddingBtn').on('click', function () {
+    	alert(123);
+        //这里只能写 loading  不能写 loadding
+        var $btn = $(this).button('loading');
+        //这里加一个定时是为了看效果,不然的话上面设成loading然后下面代码会立刻执行,所以就看不到变化
+        setTimeout(function(){
+            $btn.button('reset');
+        },2000);
+    })
+})
+			</script>
+		</div>
+	</body>
+</html>

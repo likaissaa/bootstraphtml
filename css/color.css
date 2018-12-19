@@ -1,0 +1,104 @@
+.ht20{height: 20px;line-height: 20px;}
+.ht25{height: 25px;line-height: 25px;}
+.ht30{height: 30px;line-height: 30px;}
+.ht35{height: 35px;line-height: 35px;}
+.ht40{height: 40px;line-height: 40px;}
+.ht45{height: 45px;line-height: 45px;}
+.ht50{height: 50px;line-height: 50px;}
+.ht55{height: 55px;line-height: 55px;}
+.ht60{height: 60px;line-height: 60px;}
+.ht70{height: 70px;line-height: 70px;}
+.ht80{height: 80px;line-height: 80px;}
+.ht90{height: 90px;line-height: 90px;}
+.ht100{height: 100px;line-height: 100px;}
+.ht150{height: 150px;line-height: 150px;}
+
+.h20{height:20px;}
+.h30{height:30px;}
+.h35{height:35px;}
+.h40{height:40px;}
+.h45{height:45px;}
+.h50{height:50px;}
+.h60{height:60px;}
+.h70{height:70px;}
+.h80{height:80px;}
+.h90{height:90px;}
+.w20{width:20px;}
+.w30{width:30px;}
+.w35{width:35px;}
+.w40{width:40px;}
+.w45{width:45px;}
+.w50{width:50px;}
+.w60{width:60px;}
+.w70{width:70px;}
+.w80{width:80px;}
+.w90{width:90px;}
+
+
+
+/*其他常用*/
+.bd{border:1px solid}
+.bd1{border:1px solid}
+.bd:first-line{color:#fff}
+.bd1:first-line{color:black}
+.bg{background-color:currentcolor;}
+.bg:first-line{color:#fff}
+.bg1{background-color:currentcolor;}
+.bg1:first-line{color:black}
+/*透明度*/
+.opacity8{opacity:.8}
+.opacity7{opacity:.7}
+.opacity6{opacity:.6}
+.opacity5{opacity:.5}
+.opacity4{opacity:.4}
+.opacity3{opacity:.3}
+.opacity2{opacity:.2}
+.opacity0{opacity:0}
+.black{color:black}
+.white{color:#fff}
+.red{color:#ff4f4f;}
+.orange2{color:rgb(242,151,0)}
+.grey{color:#ccc;}
+.grey2{color:#999;}
+.fontcolor4{color:cornflowerblue;}
+.blue{color: #64B2E6;}
+.orange{color: #F8B500;}
+.green{color: #B3D464;}
+.grey3{color: #666;}
+.blue2{color:#48B9BD}/* 投票颜色 */
+.blue3{color:#2A6496}
+.blue3-1{color:#286090}
+.font08{font-size:8px;}
+.font10{font-size:10px;}
+.font12{font-size:12px;}
+.font14{font-size:1em;}
+.font16{font-size:16px;}
+.font18{font-size:18px;}
+.font20{font-size:20px;}
+.font22{font-size:22px;}
+.font24{font-size:24px;}
+.font30{font-size:30px;}
+
+.font400{font-weight:400}
+.font500{font-weight:500}
+.font600{font-weight:600}
+.font700{font-weight:700}
+.font800{font-weight:800}
+.font900{font-weight:900}
+
+
+.center{text-align: center;}
+.center{text-align: center;}
+.letter8{letter-spacing:.8em}
+.letter7{letter-spacing:.7em}
+.letter6{letter-spacing:.6em}
+.letter5{letter-spacing:.5em}
+.letter4{letter-spacing:.4em}
+.letter3{letter-spacing:.3em}
+.letter2{letter-spacing:.2em}
+.letter1{letter-spacing:.1em}
+.wordbreak{word-break: break-all;}
+.wordwrap{word-wrap: break-word;}
+
+.underline{text-decoration:underline}
+.block{display:block}

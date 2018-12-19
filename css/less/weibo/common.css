@@ -1,0 +1,68 @@
+@charset "utf-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+img {
+  border: none;
+}
+input,
+select,
+textarea {
+  outline: none;
+  border: none;
+  background: none;
+}
+textarea {
+  resize: none;
+}
+a {
+  text-decoration: none;
+}
+body {
+  background-color: #99D6F3;
+}
+.header {
+  border-top: 2px solid #FA7D3C;
+  height: 48px;
+  background-color: #fff;
+}
+.header .logo {
+  height: 26px;
+  width: 80px;
+  background: url("../../../img/air1.jpg") left top no-repeat;
+  float: left;
+  display: inline;
+  margin: 8px 30px 13px 0;
+}
+.header .logo a {
+  display: block;
+  height: 100%;
+  text-indent: -99em;
+}
+.header_content {
+  width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  *zoom: 1;
+}
+.header_content:before,
+.header_content:after {
+  display: table;
+  content: "";
+}
+.header_content:after {
+  clear: both;
+}
+.header .search {
+  float: left;
+  display: inline;
+}
+.headerNav {
+  float: left;
+  display: inline;
+}

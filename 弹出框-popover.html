@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<title></title>
+		<!--<link rel="stylesheet" href="css/bootstrap.css/bootstrap-theme.min.css" />-->
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap.min.css" />
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/vue2.js" ></script>
+		<title></title>
+	</head>
+	<body>
+		 <button type="button" class="btn btn-default" id="myPopover">猛击我吧</button>
+		<a href="#" class="btn btn-primary" data-animation="fade"  id="test">left</a>
+		<button type="button" class="btn btn-default"data-placement="right" data-toggle="popover" title="haha" data-content="内容再次">right</button>
+		<script>
+			$(function(){
+				/*jq-id 触发*/
+			  $('#myPopover').popover({
+			     title:"我是弹出框的标题",
+			     content:"我是弹出框的内容",
+			     placement:"right"
+			  });
+			  
+			  $("#test").popover({
+			  	trigger:'hover',
+			  	title:'wocao',
+			  	content:'fuck',
+			  	placement:'right'
+			  })
+			  /*属性触发*/
+			  $('[data-toggle="popover"]').popover()
+			});
+</script>
+	</body>
+</html>

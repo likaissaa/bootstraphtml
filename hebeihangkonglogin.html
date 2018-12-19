@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+	<head>
+			<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="js/date/My97DatePicker/skin/red/datepicker.css" />
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/hebeifonts/iconfont.css" />
+		<link rel="stylesheet" href="js/cityselect/cityselect.css" />
+		<script type="text/javascript" src="js/cityselect/cityselect.js" ></script>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/vue2.js"></script>
+		<script type="text/javascript" src="js/date/My97DatePicker/WdatePicker.js" ></script>
+		<style>
+			.login {
+				width: 370px;
+				height: 360px;
+				margin-top: 50px;
+				box-shadow: -1px 4px 10px 4px #ababab;
+				margin-left: 200px;
+			}
+			
+			.login-top {
+				list-style: none;
+				height: 42px;
+				padding: 0;
+			}
+			
+			.login-top .btn2 {
+				cursor: pointer;
+				width: 50%;
+				height: 42px;
+				line-height: 42px;
+				color: #2D4A86;
+				border: none;
+				background-color: #fff;
+				text-align: center;
+				float: left;
+				background-color: #f9f9f7
+			}
+			
+			.login-top li a {
+				display: block;
+				text-decoration: none;
+			}
+			
+			.login li.active {
+				height: 50px !important;
+				line-height: 50px !important;
+				box-shadow: -1px -3px 4px #ababab;
+				background-color: rgb(255, 255, 255) !important;
+				margin-top: -5px !important;
+			}
+			
+			.login-main {
+				height: 316px;
+				background-color: rgb(255, 255, 255);
+				position: relative;
+				padding: 20px;
+			}
+			
+			.login-main input[type="text"] {
+				height: 42px;
+				box-shadow: none!important;
+				border: none;
+				background-color: rgb(241, 246, 249)
+			}
+			
+			.login-main input[type="password"] {
+				height: 42px;
+			}
+			
+			.viplist {
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.viplist i {
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				height: 42px;
+				width: 42px;
+				line-height: 42px;
+				text-align: center;
+				color: #fff;
+				font-size: 20px;
+				border-top-left-radius: 4px;
+				border-bottom-left-radius: 4px;
+				z-index: 1;
+				background-color: #d5d5d5;
+			}
+			
+			.viplist input[type="text"] {
+				padding-left: 52px;
+				border: red;
+				background-color: rgb(241, 246, 249);
+				box-shadow: none!important;
+			}
+			
+			.viplist input[type="password"] {
+				padding-left: 52px;
+				border: red;
+				background-color: rgb(241, 246, 249);
+				box-shadow: none!important;
+			}
+			
+			.login-main .verifycode {
+				color: #337ab7
+			}
+			
+			.tab-content3>.tab-pane {
+				display: none;
+			}
+			
+			.tab-content3>.active {
+				display: block!important;
+			}
+			
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<div class="login" id="login">
+			<ul class="login-top" id="myTab3">
+				<li class="btn2" v-on:click="changetab(1)" v-bind:class="[typeisselectedA?'active':'']">
+					<a href="#">会员登录</a>
+				</li>
+				<li class="btn2" v-bind:class="[typeisselectedB?'active':'']">
+					<a href="#" v-on:click="changetab(2)" >非会员登录</a>
+				</li>
+			</ul>
+			<div class="login-main tab-content3" id="myTabContent3">
+				<div class="tab-pane fade"  v-bind:class="[typeisselectedA?'active in':'']">
+					<form>
+						<div class="form-group viplist">
+							<i class="glyphicon glyphicon-user"></i>
+							<input type="text" class="form-control" placeholder="冀鹰卡号/用户名/证件号/手机号" />
+						</div>
+						<div class="form-group viplist">
+							<i class="glyphicon glyphicon-lock"></i>
+							<input type="password" class="form-control" placeholder="输入密码" />
+						</div>
+						<div class="form-group" style="padding-left:42px;overflow: hidden;">
+							<div class="col-md-7" style="padding-left:0;">
+								<input type="text" class="form-control" placeholder="请输入图片验证码" />
+							</div>
+							<div class="col-md-5 verifycode" style="line-height:42px;">看不清</div>
+						</div>
+						<div class="form-group" style="overflow: hidden;">
+							<a class="pull-left">忘记密码</a>
+							<a class="pull-right">免费注册</a>
+						</div>
+						<div class="form-group viplist">
+							<div class="col-xs-12 btn btn-danger text-center">登录</div>
+						</div>
+					</form>
+				</div>
+				<div class="tab-pane fade" v-bind:class="[typeisselectedB?'active in':'']">
+					<form>
+						<div class="form-group viplist">
+							<i class="glyphicon glyphicon-user"></i>
+							<input type="text" class="form-control" placeholder="手机号" />
+						</div>
+						<div class="form-group" style="padding-left:42px;overflow: hidden;">
+							<div class="col-md-7" style="padding-left:0;">
+								<input type="text" class="form-control" placeholder="请输入图片验证码" />
+							</div>
+							<div class="col-md-5 verifycode" style="line-height:42px;">看不清</div>
+						</div>
+						<div class="form-group" style="padding-left:42px;overflow: hidden;">
+							<div class="col-md-7" style="padding-left:0;">
+								<input type="text" class="form-control" placeholder="请输入短信验证码" />
+							</div>
+							<div class="col-md-5  btn btn-primary" v-on:click.stop="sendmsg" v-bind:class="[issendselected?'disabled':'']"  id="loaddingBtn">{{mymsg}}</div>
+						</div>
+						<div class="form-group" style="overflow: hidden;">
+							<a class="pull-right">免费注册</a>
+						</div>
+						<div class="form-group viplist">
+							<div class="col-xs-12 btn btn-danger text-center">登录</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+	/*	$("#myTab3 a").click(function(e) {
+				e.preventDefault();
+				$(this).tab("show");
+			})*/
+		
+		
+		
+		var vm = new Vue({
+			el:'#login',
+			data:{
+				message:'wocao',
+				typeisselectedA:true,
+				typeisselectedB:false,
+				issendselected:false,
+				mymsg:'发送验证码',
+				disabled:false
+			},
+			methods:{
+					changetab:function(index){
+						vm.typeisselectedA=1==index;
+						vm.typeisselectedB=2==index;
+					},
+					sendmsg:function(){
+						if(vm.issendselected){
+							return;//当前如果正在发送验证码 gg基本点击没反应
+						}
+						vm.issendselected=true;
+						vm.disabled='';
+						var timer = null;
+						var t=60
+						timer=setInterval(function(){
+							if(t>1){
+								t=t-1
+								vm.mymsg="倒计时("+t+")"
+								vm.issendselected=true;
+							}
+							else{
+								clearInterval(timer);
+								vm.mymsg="重新发送"
+								vm.issendselected=false
+								
+							}
+						},1000)
+					},
+					nihao:function(){
+						alert(123);
+						
+					}
+				}
+		})
+		
+		
+		/*$("#loaddingBtn").click(function(){
+		var a=	$(this).button("loading");
+			 setTimeout(function(){
+            a.button('reset');
+        },2000);
+		})*/
+		
+		function haha(){
+			alert(123)
+			$('#button').addClass('disabled'); // Disables visually
+			$('#button').attr('disabled', true);
+$('#button').prop('disabled', true); 
+		}
+	</script>
+</html>
+
+
+		<!--<button class="btn btn-primary" data-loading-text="正在加载中,请稍等..." type="button" id="loaddingBtn">加载</button>
+			<script>
+				 $(function(){
+    //这里#myButton 要加引号
+    $('#loaddingBtn').on('click', function () {
+        //这里只能写 loading  不能写 loadding
+        var $btn = $(this).button('loading');
+        //这里加一个定时是为了看效果,不然的话上面设成loading然后下面代码会立刻执行,所以就看不到变化
+        setTimeout(function(){
+            $btn.button('reset');
+        },2000);
+    })
+})-->

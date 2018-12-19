@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="js/date/My97DatePicker/skin/red/datepicker.css" />
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/hebeifonts/iconfont.css" />
+		<link rel="stylesheet" href="js/cityselect/cityselect.css" />
+		<script type="text/javascript" src="js/cityselect/cityselect.js" ></script>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/vue2.js"></script>
+		<script type="text/javascript" src="js/date/My97DatePicker/WdatePicker.js" ></script>
+
+		<!--测试-->
+		<title></title>
+		<style>
+			.navbar {
+				margin-bottom: 0;
+			}
+			
+			.navbar-nav>li>a:hover {
+				text-decoration: underline;
+			}
+			
+			@media screen and (min-width: 768px) {
+				.navbar-default {
+					border-radius: 0px;
+				}
+				.navbar-collapse.collapse {
+					display: block!important;
+					height: 70px!important;
+					padding-bottom: 0;
+					overflow: visible!important;
+				}
+				.navbar-nav>li>a {
+					padding-top: 25px!important;
+					padding-bottom: 25px!important;
+					text-shadow: none!important;
+					color: #2d4988 !important
+				}
+				.navbar li:nth-of-type(2)>a {
+					padding: 25px 0
+				}
+			}
+			
+			.navbar-brand {
+				float: left;
+				height: 70px;
+				padding: 0;
+				line-height: 20px;
+			}
+			
+			.navbar-toggle {
+				margin-top: 18px;
+			}
+			
+			.navbar-toggle:hover {
+				background-color: #fff;
+			}
+			
+			.tab-top {
+				margin-bottom: 0;
+			}
+			
+			.tab-top li {
+				background-color: #e03030;
+				border-left: 1px solid #fff;
+				box-sizing: border-box;
+			}
+			
+			.tab-top li a {
+				display: block;
+				padding: 12px 0;
+				text-decoration: none;
+				color: #fff;
+			}
+			
+			.tab-top li a:hover {
+				background-color: #fff;
+				color: #E03030;
+				padding: 12px 0;
+			}
+			
+			.tab-top li:first-child {
+				border-left: none;
+			}
+			/*tanchu*/
+			
+			.tab-top-tanchu {
+				position: relative;
+			}
+			
+			.tab-content {
+				position: absolute;
+				top: 0%;
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+				border: 1px solid red;
+				border-top: none;
+				width: 80%;
+				height: 270px;
+				box-shadow: 2px 6px 12px rgba(255, 255, 255, .7);
+				background-color: white;
+				display: none;
+				z-index: 9999;
+			}
+			/*.tab-pane {
+				border: 1px solid red;
+				border-top: none;
+				height: 270px;
+				box-shadow: 2px 6px 8px rgba(0, 0, 0, .4);
+			}*/
+			
+			.tab-content>div:first-child {
+				display: none;
+			}
+			
+			.tab-content .tab-pane {
+				padding: 20px 40px;
+			}
+			
+			.tab-content .tab-pane .tab-list div {
+				padding: 10px;
+				margin-right: 20px;
+				border-bottom: 1px solid #D5D5D5;
+				color: #e03030;
+			}
+			
+			.tab-content .tab-pane .tab-list p {
+				padding: 10px;
+				margin-right: 20px;
+			}
+			/*lunbo*/
+			
+			.carousel-inner>.item>img {
+				width: 100%;
+				height: 480px!important;
+			}
+			
+			.carousel-indicators {
+				margin-left: -12%;
+			}
+			
+			.carousel-indicators li {
+				display: inline-block;
+				width: 50px;
+				height: 12px;
+				border-radius: 20%;
+				background-color: lightpink;
+				text-indent: -999px;
+				cursor: pointer;
+				border: 1px solid lightpink;
+				box-shadow: 0 2px 0px pink, inset 0 2px 4px palevioletred;
+				border-radius: 10px;
+			}
+			
+			.carousel-indicators .active {
+				width: 50px;
+				height: 12px;
+				background-color: #e03030;
+				box-shadow: 0 2px 4px #e03030, inset 0 2px 4px red;
+				border: 1px solid #E03030
+			}
+			/*airplan*/
+			
+			.nav>li>a {
+				padding: 7.5px 15px;
+			}
+			
+			.nav-stacked>li+li {
+				margin: 0;
+			}
+			
+			.nav>li>a:hover {
+				background-color: #eee;
+			}
+			
+			.airplan {
+				position: absolute;
+				left: 100px;
+				top: 70px;
+				width: 463px;
+				height: 370px;
+				border-radius: 6px;
+				box-sizing: content-box;
+				box-shadow: 0 2px 4px rgba(0, 0, 0, .4)
+			}
+			
+			.airplan ul {
+				/*overflow: hidden;*/
+			}
+			
+			.airplan .col-md-3 {
+				padding: 0;
+			}
+			
+			.airplan .col-md-9 {
+				border-top-right-radius: 6px;
+				border-bottom-right-radius: 6px;
+			}
+			
+			.airplan .nav>li {
+				/*overflow: hidden;*/
+			}
+			
+			.airplan .nav>li:first-child a {
+				border-top-left-radius: 6px;
+			}
+			
+			.airplan .nav>li:last-child a {
+				border-bottom-left-radius: 6px;
+			}
+			
+			.airplan .nav> li a {
+				position: relative;
+				display: block;
+				text-align: center;
+				cursor: pointer;
+				border-bottom: 1px solid #eee;
+				height: 92.5px;
+				box-sizing: border-box;
+				opacity: 0.95;
+				background-color: rgba(255, 255, 255, .95);
+			}
+			
+			.airplan .nav> li:last-child a {
+				border-bottom: 0;
+			}
+			/*.airplan .nav > li i{
+				color:#e03030;
+				font-size:32px;
+			}
+			.airplan .nav > li p{
+				font-size:15px;
+				color:#e03030;
+				font-weight:600
+			}*/
+			
+			.airplan .nav>li p {
+				font-size: 15px;
+				color: #5c5c5c;
+				font-weight: 400
+			}
+			
+			.airplan .nav>li i {
+				color: #5c5c5c;
+				font-size: 28px;
+			}
+			
+			.airplan .nav>li.active p {
+				font-size: 15px;
+				color: #e03030;
+				font-weight: 600
+			}
+			
+			.airplan .nav>li.active a {
+				opacity: 0.95;
+				background-color: rgb(252, 248, 245);
+				border-radius: 0!important;
+			}
+			
+			.airplan .nav>li.active a:before {
+				content: '';
+				position: absolute;
+				display: block;
+				height: 92.5px;
+				width: 8px;
+				top: 0;
+				left: -8px;
+				border-top-left-radius: 6px;
+				border-bottom-left-radius: 6px;
+				background-color: #e03030;
+				border: 1px solid red;
+				z-index: 2;
+			}
+			
+			.airplan .nav>li.active i {
+				color: #e03030;
+				font-size: 32px;
+			}
+			/*tab-content2*/
+			
+			.airplan .col-md-9 {
+				background-color: rgb(252, 248, 245);
+				height: 100%;
+				padding-top: 30px;
+				padding-bottom: 30px;
+				border-top-right-radius: ;
+			}
+			
+			.tab-content2>.tab-pane {
+				display: none;
+			}
+			
+			.tab-content2>.active {
+				display: block!important;
+			}
+			
+			.tab-content2 .input-container {
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.tab-content2 .input-container .myinput {
+				padding-top: 5px;
+				padding-bottom: 5px;
+				padding-left: 80px;
+				padding-right: 5px;
+			}
+			
+			.tab-content2 .input-container>span {
+				position: absolute;
+				left: 0;
+				top: 7px;
+				text-align: right;
+				width: 75px;
+				padding-right: 6px;
+				border-right: 1px solid #ddd;
+				color: #5c5c5c;
+			}
+			
+			.form-group {
+				margin-bottom: 20px;
+			}
+			
+			.checkbox-inline {
+				padding-left: 19px;
+			}
+			/*登录*/
+			
+			.login {
+				width: 370px;
+				height: 360px;
+				margin-top: 50px;
+				box-shadow: -1px 4px 10px 4px #ababab;
+				margin-left: 200px;
+			}
+			
+			.login-top {
+				list-style: none;
+				height: 42px;
+				padding: 0;
+			}
+			
+			.login-top .btn2 {
+				cursor: pointer;
+				width: 50%;
+				height: 42px;
+				line-height: 42px;
+				color: #2D4A86;
+				border: none;
+				background-color: #fff;
+				text-align: center;
+				float: left;
+				background-color: #f9f9f7
+			}
+			
+			.login-top li a {
+				display: block;
+				text-decoration: none;
+			}
+			
+			.login li.active {
+				height: 50px !important;
+				line-height: 50px !important;
+				box-shadow: -1px -3px 7px #ababab;
+				background-color: rgb(255, 255, 255) !important;
+				margin-top: -5px !important;
+			}
+			
+			.login-main {
+				height: 316px;
+				background-color: rgb(255, 255, 255);
+				position: relative;
+				padding: 20px;
+			}
+			
+			.login-main input[type="text"] {
+				height: 42px;
+				box-shadow: none!important;
+				border: none;
+				background-color: rgb(241, 246, 249)
+			}
+			
+			.login-main input[type="password"] {
+				height: 42px;
+			}
+			
+			.viplist {
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.viplist i {
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				height: 42px;
+				width: 42px;
+				line-height: 42px;
+				text-align: center;
+				color: #fff;
+				font-size: 20px;
+				border-top-left-radius: 4px;
+				border-bottom-left-radius: 4px;
+				z-index: 1;
+				background-color: #d5d5d5;
+			}
+			
+			.viplist input[type="text"] {
+				padding-left: 52px;
+				border: red;
+				background-color: rgb(241, 246, 249);
+				box-shadow: none!important;
+			}
+			
+			.viplist input[type="password"] {
+				padding-left: 52px;
+				border: red;
+				background-color: rgb(241, 246, 249);
+				box-shadow: none!important;
+			}
+			
+			.login-main .verifycode {
+				color: #337ab7
+			}
+			
+			.tab-content3>.tab-pane {
+				display: none;
+			}
+			
+			.tab-content3>.active {
+				display: block!important;
+			}
+			
+			.thumb-middle a {
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.thumb-middle .move {
+				position: absolute;
+				left: 4px;
+				right: 4px;
+				bottom: -42px;
+				height: 42px;
+				line-height: 42px;
+				color: #fff;
+				background-color: rgba(0, 0, 0, .4);
+				z-index: 999;
+				text-align: center;
+				transition: bottom .5s;
+				-moz-transition: bottom .5s;
+				/* Firefox 4 */
+				-webkit-transition: bottom .5s;
+				/* Safari 和 Chrome */
+			}
+			
+			.thumb-middle .thumbnail:hover .move {
+				bottom: 0;
+			}
+			
+			.btm-to-top{
+				width:40px;
+				height:40px;
+				line-height:40px;
+				text-align: center;
+				color:#337ab7;
+				border-radius: 6px;
+				background-color:#fff;
+				box-shadow:0 2px 4px 1拼px rgba(0,0,0,.6);
+				position:fixed;
+				right:20px;
+				bottom:20%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div style="height:6000px;">
+			<nav class="navbar navbar-default ">
+				<div class="container">
+					<div class="row">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#login">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a href="#" class="navbar-brand"><img src="img/air1.jpg" /></a>
+						</div>
+						<div class="navbar-collapse collapse" id="login">
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									<a href="#">登录</a>
+								</li>
+								<li>
+									<a href="#" style="padding:0">|</a>
+								</li>
+								<li>
+									<a href="#">注册</a>
+								</li>
+								<li>
+									<a href="#">我的订单</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</nav>
+			<!---->
+			<ul id="myTab" class="list-unstyled text-center tab-top" style="overflow: hidden;">
+				<li class="active col-md-3">
+					<a href="#bulletin">首页</a>
+				</li>
+				<li class="col-md-3">
+					<a href="#rule">嘴哥服务</a>
+				</li>
+				<li class="col-md-3">
+					<a href="#forum">狗婷会员</a>
+				</li>
+				<li class="col-md-3">
+					<a href="#security">旅行贴士</a>
+				</li>
+			</ul>
+			<div class="tab-top-tanchu">
+				<div id="myTabContent" class="tab-content">
+					<div class="tab-pane fade in" id="bulletin">首页</div>
+					<div class="tab-pane fade" id="rule">
+						<div class="col-md-12 tab-lists">
+							<div class="col-md-4 tab-list">
+								<div><i class="iconfont icon-airplane-icon" style="font-size:14px;margin-right:10px;"></i>机票预订</div>
+								<p>在线预定，更快捷，更高效</p>
+							</div>
+							<div class="col-md-4 tab-list">
+								<div>改期退票</div>
+								<p>机票改期退票及不正常航班改期操作</p>
+							</div>
+							<div class="col-md-4 tab-list">
+								<div>航班动态</div>
+								<p>在线查询航班动态，获取最新航班信息</p>
+							</div>
+						</div>
+						<div class="col-md-12 tab-lists">
+							<div class="col-md-4 tab-list">
+								<div>办理值机</div>
+								<p>在线办理登机手续，为您的出行提供更多方便</p>
+							</div>
+							<div class="col-md-4 tab-list">
+								<div>客票验真</div>
+								<p>在线查询机票真伪，安全更放心</p>
+							</div>
+							<div class="col-md-4 tab-list">
+								<div>附加服务</div>
+								<p>保险，租车，酒店等服务预订</p>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="forum">会员</div>
+					<div class="tab-pane fade" id="security">旅行提示</div>
+				</div>
+			</div>
+			<!--背景轮播图-->
+			<div id="myCarousel" class="carousel slide">
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" class="active" data-slide-to="0"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+					<li data-target="#myCarousel" data-slide-to="3"></li>
+					<li data-target="#myCarousel" data-slide-to="4"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						<img src="img/lunbo1.jpg" />
+					</div>
+					<div class="item">
+						<img src="img/lunbo2.jpg" />
+					</div>
+					<div class="item">
+						<img src="img/lunbo3.jpg" />
+					</div>
+					<div class="item">
+						<img src="img/lunbo4.jpg" />
+					</div>
+					<div class="item">
+						<img src="img/lunbo4.jpg" />
+					</div>
+				</div>
+				<!--<a class="left carousel-control" href="#myCarousel">&lsaquo;</a>
+				<a class="right carousel-control" href="#myCarousel">&rsaquo;</a>-->
+				<div class="airplan">
+					<div class="col-md-3">
+						<ul id="myTab2" class="nav nav-stacked">
+							<li class="active">
+								<a href="#airbook"><i class="iconfont icon-weichuxingdingdanfeiji"></i>
+									<p>机票预订</p>
+								</a>
+							</li>
+							<li>
+								<a href="#airon"><i class="iconfont icon-weichuxingdingdanfeiji"></i>
+									<p>办理值机</p>
+								</a>
+							</li>
+							<li>
+								<a href="#airstatus"><i class="iconfont icon-weichuxingdingdanfeiji"></i>
+									<p>航班动态</p>
+								</a>
+							</li>
+							<li>
+								<a href="#aircancel"><i class="iconfont icon-weichuxingdingdanfeiji"></i>
+									<p>退改期</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-9">
+						<div id="myTabContent2" class="tab-content2">
+							<div class="tab-pane fade  active in" id="airbook">
+								<form>
+									<div class="form-group">
+										<label class="myradio radio-inline">
+											<input type="radio" value="单程" name="air" checked="checked"/>单程 
+										</label>
+										<label class="myradio radio-inline">
+											<input type="radio" value="往返" name="air"/>往返 
+										</label>
+									</div>
+									<div class="form-group">
+										<div class="input-container">
+											<span>出发城市</span>
+											<input type="text" class="myinput form-control" id="depCitySelector" placeholder="全拼/简拼/汉字" />
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="input-container">
+											<span>到达城市</span>
+											<input type="text" class="myinput form-control" id="arrCitySelector" placeholder="全拼/简拼/汉字" />
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="input-container">
+											<span>出发日期</span>
+											<input type="text" id="biginTime" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'endTime\')||\'2018-01-01\'}'})" class="myinput bigin-Time form-control"/>
+										</div>
+									</div>
+									<div class="form-group" style="margin-bottom:45px;">
+										<div class="input-container">
+											<span>返程日期</span>
+											<input type="text" id="endTime" onclick="WdatePicker({minDate:'#F{$dp.$D(\'biginTime\')}',maxDate:'2018-01-01'})"  class="myinput form-control"/>
+										</div>
+									</div>
+									<div class="form-group" style="overflow: hidden;">
+										<div class="btn text-center btn-danger col-md-6 pull-right">立即查询</div>
+									</div>
+								</form>
+							</div>
+							<div class="tab-pane fade" id="airon">
+								<form>
+									<div class="form-group">
+										<div class="input-container">
+											<span>姓名</span>
+											<input type="text" class="myinput form-control" placeholder="乘机人姓名" />
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="input-container">
+											<span>证件类型</span>
+											<select class="myinput form-control">
+												<option>客票号码</option>
+												<option>身份证</option>
+												<option>护照</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="input-container">
+											<span>证件号码</span>
+											<input type="text" class="myinput form-control" placeholder="请输入证件号码" />
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="input-container">
+											<span>手机号</span>
+											<input type="text" class="myinput form-control" placeholder="乘机人手机号" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="mycheckbox checkbox-inline">
+											<input type="checkbox" value="协议" name="airon">我已阅读并接受 <a style="white-space:pre">《安全运输规定》</a><a>《开通城市》</a><a>《服务协议》</a><a>《值机常见问题》</a>   
+										</label>
+									</div>
+									<div class="form-group" style="overflow: hidden;">
+										<div class="btn text-center btn-danger col-md-6 pull-right zhiji">办理值机</div>
+									</div>
+								</form>
+							</div>
+							<div class="tab-pane fade" id="airstatus">
+								<form>
+									<div class="form-group">
+										<label class="myradio radio-inline">
+											<input type="radio" value="单程" name="air" checked="checked"/>出发到达城市 
+										</label>
+										<label class="myradio radio-inline">
+											<input type="radio" value="往返" name="air"/>航班号
+										</label>
+									</div>
+									<div class="form-group">
+										<div class="input-container">
+											<span>出发城市</span>
+											<input type="text" class="myinput form-control" placeholder="全拼/简拼/汉字" />
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="input-container">
+											<span>到达城市</span>
+											<input type="text" class="myinput form-control" placeholder="全拼/简拼/汉字" />
+										</div>
+									</div>
+									<div class="form-group" style="margin-bottom:45px;">
+										<div class="input-container">
+											<span>出发日期</span>
+											<input type="date" disabled="disabled" class="myinput form-control" placeholder="全拼/简拼/汉字" />
+										</div>
+									</div>
+									<div class="form-group" style="overflow: hidden;">
+										<div class="btn text-center btn-danger col-md-6 pull-right">立即查询</div>
+									</div>
+								</form>
+							</div>
+							<div class="tab-pane fade" id="aircancel">安全内容面板</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<!--办理值机+modal弹出框-->
+				<div class="modal fade" style="margin-top:300px;" id="mymodal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span>&times;</span>
+								</button>
+								<h4 class="moda-l-title">模拟弹出框</h4>
+							</div>
+							<div class="modal-body">
+								<p>模拟弹出窗主题内容</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger pull-right">保存</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+				
+				<!--使用vue 实现一点切换效果-->
+
+			</div>
+			<div class="login">
+				<ul class="login-top" id="myTab3">
+					<li class="btn2 active">
+						<a href="#viplogin">会员登录</a>
+					</li>
+					<li class="btn2">
+						<a href="#userlogin">非会员登录</a>
+					</li>
+				</ul>
+				<div class="login-main tab-content3" id="myTabContent3">
+					<div class="tab-pane fade  active in" id="viplogin">
+						<form>
+							<div class="form-group viplist">
+								<i class="glyphicon glyphicon-user"></i>
+								<input type="text" class="form-control" placeholder="冀鹰卡号/用户名/证件号/手机号" />
+							</div>
+							<div class="form-group viplist">
+								<i class="glyphicon glyphicon-lock"></i>
+								<input type="password" class="form-control" placeholder="输入密码" />
+							</div>
+							<div class="form-group" style="padding-left:42px;overflow: hidden;">
+								<div class="col-md-7" style="padding-left:0;">
+									<input type="text" class="form-control" placeholder="请输入图片验证码" />
+								</div>
+								<div class="col-md-5 verifycode" style="line-height:42px;">看不清</div>
+							</div>
+							<div class="form-group" style="overflow: hidden;">
+								<a class="pull-left">忘记密码</a>
+								<a class="pull-right">免费注册</a>
+							</div>
+							<div class="form-group viplist">
+								<div class="col-xs-12 btn btn-danger text-center">登录</div>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane fade" id="userlogin">
+						<form>
+							<div class="form-group viplist">
+								<i class="glyphicon glyphicon-user"></i>
+								<input type="text" class="form-control" placeholder="手机号" />
+							</div>
+							<div class="form-group" style="padding-left:42px;overflow: hidden;">
+								<div class="col-md-7" style="padding-left:0;">
+									<input type="text" class="form-control" placeholder="请输入图片验证码" />
+								</div>
+								<div class="col-md-5 verifycode" style="line-height:42px;">看不清</div>
+							</div>
+							<div class="form-group" style="padding-left:42px;overflow: hidden;">
+								<div class="col-md-7" style="padding-left:0;">
+									<input type="text" class="form-control" placeholder="请输入短信验证码" />
+								</div>
+								<div class="col-md-5  btn btn-primary">发送短信</div>
+							</div>
+							<div class="form-group" style="overflow: hidden;">
+								<a class="pull-right">免费注册</a>
+							</div>
+							<div class="form-group viplist">
+								<div class="col-xs-12 btn btn-danger text-center">登录</div>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+			<!-- 缩略图-->
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-6 col-md-6 text-center">
+						<a href="#" class="thumbnail">
+							<img src="img/thumbnail1.jpg" />
+							<p>"河" 你在一起 "曼" 游乐翻天</p>
+						</a>
+					</div>
+					<div class="col-xs-6 col-md-6 text-center">
+						<a href="#" class="thumbnail">
+							<img src="img/thumbnail2.jpg" />
+
+							<p>超值经济舱 服务超 "前" 享</p>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="container thumb-middle">
+				<div class="row">
+					<div class="col-xs-6 col-md-3 text-center">
+						<a href="#" class="thumbnail">
+							<img src="img/渐变1.jpg" />
+							<div class="move">小兄弟可以啊</div>
+						</a>
+					</div>
+					<div class="col-xs-6 col-md-3 text-center">
+						<a href="#" class="thumbnail">
+							<img src="img/渐变1.jpg" />
+							<div class="move">打你费</div>
+						</a>
+					</div>
+					<div class="col-xs-6 col-md-3 text-center">
+						<a href="#" class="thumbnail">
+							<img src="img/渐变1.jpg" />
+							<div class="move">带你飞擦擦擦
+							</div>
+						</a>
+					</div>
+					<div class="col-xs-6 col-md-3 text-center">
+						<a href="#" class="thumbnail">
+							<img src="img/渐变1.jpg" />
+
+							<div class="move">笑，呵呵</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="btm-to-top" onClick="riseup()" id="rise">上升</div>
+			<div style="height:60px;"></div>
+		</div>
+	</body>
+	<script>
+		$(function() {
+			$("#myTab a").hover(function(e) {
+				e.preventDefault();
+				$(this).tab("show");
+				$("#myTabContent").css("display", "block")
+			}, function() {
+				$("#myTabContent").css("display", "none")
+			})
+
+			$("#myTab2 a").click(function(e) {
+				e.preventDefault();
+				$(this).tab("show");
+			})
+
+			$("#myTab3 a").click(function(e) {
+				e.preventDefault();
+				$(this).tab("show");
+			})
+
+			$("#myTabContent").mouseover(function() {
+				//如果是第一个子元素那么
+
+				$(this).css("display", "block")
+			})
+			$("#myTabContent").mouseout(function() {
+				$(this).css("display", "none")
+			})
+			$(".carousel").carousel({
+				interval: 5000
+			});
+			$("#slidershow a.left").click(function() {
+				$(".carousel").carousel("prev");
+			});
+			$("#slidershow a.right").click(function() {
+				$(".carousel").carousel("next");
+			});
+			
+			
+		})
+			var risesign=document.documentElement;
+			var timer=null;
+			/*function riseup(){
+				clearInterval(timer);
+				
+				if(risesign.scrollTop>0){
+					timer=setInterval(function(){
+						risesign.scrollTop=risesign.scrollTop-10+'px'	
+						riseup();
+					},5000)
+					
+				}
+				else{
+					clearInterval(timer);
+				}
+			}*/
+			
+			function riseup(){
+				clearTimeout(risesign.timer);
+				var icur=0;
+				var iTarget=0;
+				risesign.timer=setTimeout(function(){
+				icur=Math.round(parseInt(risesign.scrollTop))
+				console.log("top="+risesign.scrollTop)
+				speed=(iTarget-icur)/10;
+				speed=speed>0?Math.ceil(speed):Math.floor(speed);
+				console.log("speed="+speed)
+				if(icur==iTarget){
+					clearTimeout(risesign.timer)
+				}
+				else{
+					risesign.scrollTop=icur+speed;
+					riseup();
+				}
+				},30)
+			}
+			
+		/*	var test = new Vcity.CitySelector({input:'depCitySelector'})
+			var test2 = new Vcity.CitySelector({input:'arrCitySelector'})*/
+			 var depcity = new Vcity.CitySelector({input: 'depCitySelector', select_city_type: "1", arr_id: "arrCitySelector"});
+			 /*触发城市选择按钮*/
+    var arrcity = new Vcity.CitySelector({input: 'arrCitySelector', select_city_type: "1", dep_id: "depCitySelector"});
+    var depcity2 = new Vcity.CitySelector({input: 'arrCityActive', select_city_type: "1", arr_id: "depCityActive"});
+    var arrcity2 = new Vcity.CitySelector({input: 'depCityActive', select_city_type: "1", dep_id: "arrCityActive"});
+	
+	
+			/*
+			 * 办理值机弹出框
+			 */
+			$(".zhiji").click(function(){
+				$("#mymodal").modal("toggle");
+			});
+	</script>
+
+</html>

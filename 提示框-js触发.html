@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bazel.build.css" />
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/vue2.js" ></script>
+		<title>提示框-js触发</title>
+		<style>
+			.btn{margin:20px 60px 20px}
+		</style>
+	</head>
+	<body>
+		<div>
+			<!--按钮-->
+			<!--data-delay show 和 hide 间隔-->
+ 			<button type="button" class="btn btn-default" data-toggle="tooltip" data-animation="fade" data-placement="left"  data-delay='{"show":"100", "hide":"100"}' data-original-title="提示框居左" title="haha ">
+		  		提示框居左      
+  			</button>
+  			<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right"  data-delay='{"show":"1000", "hide":"1000"}' title="right-right">
+  			  提示框右边	
+  			</button>
+  			<!--超链接-->
+  			<a href="" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="top的我">top </a>
+			<a href="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="bottom的我">bottom</a>
+			
+			<!--使用jq 配合 id 触发-->
+			<a type="button" class="btn btn-default"  id="jqleft">提示框在左边的jq</a>
+			<a class="btn btn-default"  id="jqright">提示框在右边的jq</a>
+		</div>
+			 <script>
+				  $(function(){
+				    $('[data-toggle="tooltip"]').tooltip();
+				    
+				    /*使用jq 配合 id 触发-不需要属性data-toggle="tooltip"*/
+				   $("#jqleft").tooltip({
+				    	title:'我是一个提示框在左边的jq',
+				    	placement:'left'
+				    });
+				    
+				    $("#jqright").tooltip({
+				    	title:'我是一个提示框在右边的jq',
+				    	placement:'right'
+				    })
+				    
+				  });
+  				</script>
+	</body>
+</html>

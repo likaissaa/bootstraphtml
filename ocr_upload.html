@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<script type="text/javascript" src="/static/jquery/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="/static/TZUtils.js"></script>
+	<title>上传图片</title>
+</head>
+<body>
+	<form id="uploadForm">
+		上传文件1：<input type="file" name="file1"><br/>
+		<input type="button" onclick="doUpload()" value="确定添加">
+	</form>
+</body>
+<script type="text/javascript">
+	function doUpload() {  
+	     var formData = new FormData($( "#uploadForm" )[0]);  
+	     $.ajax({  
+	          url: '192.168.28.112:8082/qualitysample/upload' ,  
+	          type: 'POST',  
+	          data: formData,  
+	          async: false,  
+	          cache: false,  
+	          contentType: false,  
+	          processData: false,  
+	          success: function (result) {  
+	              $("#path").val(result);
+	              $("#uploadForm").hide();
+	          },  
+	          error: function (returndata) {  
+	              alert(returndata);  
+	          }  
+	     });  
+	}  
+</script>
+</html>

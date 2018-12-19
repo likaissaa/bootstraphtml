@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="js/date/My97DatePicker/skin/red/datepicker.css" />
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/hebeifonts/iconfont.css" />
+		<link rel="stylesheet" href="js/cityselect/cityselect.css" />
+		<script type="text/javascript" src="js/cityselect/cityselect.js" ></script>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/vue2.js"></script>
+		<script type="text/javascript" src="js/date/My97DatePicker/WdatePicker.js" ></script>
+		<style>
+			.star{
+				color:red;
+				font-size:16px;
+			}
+			.publicred{
+				border:1px solid red !important;
+				background-color:#fee !important;
+			}
+			.form-group div.col-md-3 span{
+				display: inline-block;padding-top:7px;
+				color:red;
+			}
+			.special{
+				display: inline-block;padding-top:7px;
+				color:red;
+			}
+			/*重大问题,不能直接获取时间 难受香菇*/
+			[v-cloak] {
+				display:none;
+			}
+			
+			.form-control[disabled],.form-control[readonly]{
+				background-color:#fff;
+				opactiy:1;
+			}
+		</style>
+	</head>
+	<body>
+		<!--bs 负责样式 vue 负责js
+		-->
+		<div v-cloak id="app">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-offset-2" style="margin-top:200px;">
+						<form class="form-horizontal">
+							<div class="form-group">
+								<label class="col-md-3 control-label"><span class="star">*</span>中文姓名</label>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-3">
+											<input type="text" class="form-control" v-bind:class="[china.isfirstempty?'publicred':'']" placeholder="姓" v-model.trim="chinafirst">
+										</div>	
+										<div class="col-md-9">
+											<input type="text" class="form-control" v-bind:class="[china.islastempty?'publicred':'']" placeholder="名字" v-model.trim="chinalast">
+										</div>
+									</div>									
+								</div>
+								<div class="col-md-3">
+									<span>{{chinaalert}}</span>
+								</div>
+								
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label"><span class="star">*</span>英文姓名</label>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-3">
+											<input type="text" class="form-control form" placeholder="姓"  v-bind:class="[english.isfirstempty?'publicred':'']" v-model.trim="englishfirst">
+										</div>	
+										<div class="col-md-9">
+											<input type="text" class="form-control" placeholder="名字" v-bind:class="[english.islastempty?'publicred':'']" v-model.trim="englishlast">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<span>{{englishalert}}</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label"><span class="star">*</span>证件号码</label>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-3">
+											<select class="form-control" v-model="selectedcardtype">
+												<option v-for="option in options" v-bind:value="option.value">
+													{{option.text}}
+												</option>
+											</select>
+										</div>
+										<div class="col-md-9">
+											<input type="text" class="form-control" v-model.trim.lazy="cardnum"  v-bind:class="[cardisempty?'publicred':'']" placeholder="证件号码">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<span>{{cardalert}}</span>
+								</div>	
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label"><span class="star">*</span>出生日期</label>
+								<div class="col-md-6">
+									<!--禁止输入，设置为只读，然后截取身份证额事件-->
+									<input type="text" disabled="disabled" name="mytime" v-bind:class="[birthisempty?'publicred':'']" ref="xixi" class="form-control" id="birthdate"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" placeholder="请选择出生日期"/>
+								</div>
+								<div class="col-md-3">
+									<span class="choosedate">{{birthalert}}</span>
+								</div>
+							
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label"><span class="star">*</span>性别</label>
+								<div class="col-md-6">
+									<label class="myradio radio-inline">
+										<input type="radio" value="0" v-model="sexselected" name="registsex"/>
+										男
+									</label>
+									<label class="myradio radio-inline">
+										<input type="radio" value="1" v-model="sexselected" name="registsex" />女
+									</label>
+								</div>
+								<div class="col-md-3">
+									<span></span>
+								</div>
+								
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label"><span class="star">*</span>手机号</label>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-12">
+											<input type="text" class="form-control" v-bind:class="[phoneisempty?'publicred':'']" v-model.trim="phonenum" placeholder="请输入手机号" />
+										</div>
+										
+									</div>
+								</div>
+								<div class="col-md-3">
+									<span>{{phonealert}}</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label"><span class="star">*</span>图片验证码</label>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-8">
+											<input type="text" class="form-control" v-model="piccode"  v-bind:class="[picisempty?'publicred':'']" placeholder="请输入图片验证码"/>
+										</div>
+										<div class="col-md-4">
+											<label class="control-label">看不清</label>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<span>{{picalert}}</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label"><span class="star">*</span>短信验证码</label>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-8">
+											<input type="text" class="form-control" v-model.trim="msgcode"  v-bind:class="[msgisempty?'publicred':'']" placeholder="请输入短信验证码"/>
+										</div>
+										<div class="col-md-4">
+											<div class="btn btn-primary col-md-12" >发送短信</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<span>{{msgalert}}</span>
+								</div>
+							</div>
+						
+							
+							
+							<div class="form-group">
+								<label class="col-md-3 control-label"><span class="star">*</span>登录密码</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" v-model.trim="loginpwd"  v-bind:class="[loginisempty?'publicred':'']" placeholder="请输入登录密码" />
+								</div>
+								<div class="col-md-3">
+									<span>{{loginalert}}</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label"><span class="star">*</span>确认密码</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" v-model.trim.lazy="surepwd" placeholder="请输入确认密码"  v-bind:class="[sureisempty?'publicred':'']"/>
+								</div>
+								<div class="col-md-3">
+									<span>{{surealert}}</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-3"></div>
+								<div class="col-md-4">
+									<label class="checkbox-inline col-md-offset-1">
+										<input type="checkbox" v-model="check"/>我已阅读并同意 《冀鹰会员注册协议》
+									</label>
+								</div>
+								<div class="col-md-5">
+									<span class="special">{{checkalert}}</span>
+								</div>
+							</div>
+							<div class="form-group">
+							</div>
+							<div class="btn btn-danger col-md-4 col-md-offset-4" v-on:click="finishregist">完成注册</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div>
+				
+			</div>
+		</div>
+		
+	</body>
+	<script>
+		
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				chinafirst:'',
+				chinalast:'',
+				chinaalert:'',
+				englishfirst:'',
+				englishlast:'',
+				englishalert:'',
+				cardalert:'',
+				selectedcardtype:'0',
+				options:[
+				{text:'身份证',value:'0'},
+				{text:'护照',value:'1'},
+				{text:'其他',value:'2'}],
+				cardnum:'',	//证件号码
+				birthalert:'',
+				sexselected:'0',
+				phonenum:'',
+				phonealert:'',
+				piccode:'',
+				picalert:'',
+				msgcode:'',
+				msgalert:'',
+				loginpwd:'',
+				loginalert:'',
+				surepwd:'',
+				surealert:'',
+				check:'',
+				checkalert:'',
+				china:{
+					isfirstempty:false,
+					islastempty:false
+						},
+				english:{
+					isfirstempty:false,
+					islastempty:false
+				},
+				cardisempty:false,
+				birthisempty:false,
+				phoneisempty:false,
+				picisempty:false,
+				msgisempty:false,
+				loginisempty:false,
+				sureisempty:false,
+				signchina:false,
+				signenglish:false,
+				isshowalertmsg:false
+			},
+			watch:{
+				chinafirst:'china1',
+				chinalast:'china2',
+				englishfirst:'english1',
+				englishlast:'english2',
+				cardnum:'card1',
+				phonenum:'phone1',
+				piccode:'pic1',
+				msgcode:'msg1',
+				loginpwd:'login1',
+				surepwd:'sure1',
+				check:'check1'
+			},
+			methods:
+				{
+				china1(val){
+					if(val==""){
+						this.chinaalert="请输入中文姓名"
+						this.china.isfirstempty=true;
+						return false;
+					}
+					else if(this.chinalast==""){
+						this.chinaalert="请输入中文姓名"
+						this.china.islastempty=true;
+						this.china.isfirstempty=false;
+						return false;
+					}
+					else{
+						this.chinaalert="";
+						this.china.isfirstempty=false;
+						return true;
+					}
+				},
+				china2(val){
+					if(val==""){
+						this.chinaalert="请输入中文姓名"
+						this.china.islastempty=true;
+						return false
+					}
+					else if(this.chinafirst==""){
+						this.chinaalert="请输入中文姓名"
+						this.china.isfirstempty=true;
+						this.china.islastempty=false;
+						return false
+					}
+					else{
+						this.chinaalert="";
+						this.china.islastempty=false;
+						return true;
+					}
+				},
+				english1(val){
+					if(val==""){
+						this.englishalert="请输入英文姓名"
+						this.english.isfirstempty=true;
+					}
+					else if(this.englishlast==""){
+						this.englishalert="请输入英文姓名"
+						this.english.isfirstempty=false
+						this.english.islastempty=true
+						return false;
+					}
+					else{
+						this.englishalert="";
+						this.english.isfirstempty=false;
+						return true;
+					}
+				},
+				english2(val){
+					if(val==""){
+						this.englishalert="请输入英文姓名";
+						this.english.islastempty=true;
+						return false;
+					}
+					else if(this.englishfirst=="") {
+						this.englishalert="请输入中文姓名";
+						this.english.isfirstempty=true;
+						this.english.islastempty=false;
+					}
+					else{
+						this.englishalert="";
+						this.english.islastempty=false;
+						return true;
+					}
+				},
+				card1(val){
+					var cardrule=/(^\d{18}$)|(^\d{17}(x|X|\d)$)/
+					if(val==""){
+						this.cardalert="请输入证件号码"
+						this.cardisempty=true
+						return false
+					}
+					else if(!cardrule.test(val)){
+						this.cardalert="请输入正确的身份证格式"
+						this.cardisempty=true
+						return false
+					}
+					else{
+						
+						this.cardalert=""
+						this.cardisempty=false
+						//切割身份证号进行value 赋值
+						var r=this.cardnum.substring(6,14)
+						var pattern=/(\d{4})(\d{2})(\d{2})/
+						var time=r.replace(pattern,"$1-$2-$3")
+						vm.$refs.xixi.value=time
+						
+						return true
+					}
+				},
+				phone1(val){
+					var phonerule=/(^1(3|4|5|7|8)\d{9}$)/;
+					if(val==""){
+						this.phonealert="请输入手机号码"
+						this.phoneisempty=true
+						return false
+					}
+					else if(!phonerule.test(val)){
+						this.phonealert="请输入正确的手机格式"
+						this.phoneisempty=true
+						return false
+					}
+					else{
+						this.phonealert=""
+						this.phoneisempty=false
+						return true
+					}
+				},
+				pic1(val){
+					if(val==""){
+						this.picalert="请输入图片验证码"
+						this.picisempty=true
+						return false
+					}
+					else{
+						
+						this.picalert=""
+						this.picisempty=false
+						return true
+					}
+				},
+				msg1(val){
+					if(val==""){
+						this.msgalert="请输入短信验证码"
+						this.msgisempty=true
+						return false
+					}
+					else{
+						
+						this.msgalert=""
+						this.msgisempty=false
+						return true
+					}
+				},
+				login1(val){
+					if(val==""){
+						this.loginalert="请输入登陆密码"
+						this.loginisempty=true
+						return false
+					}
+					else{
+						
+						this.loginalert=""
+						this.loginisempty=false
+						return true
+					}
+				},
+				sure1(val){
+					if(val==""){
+						this.surealert="请输入确认密码"
+						this.sureisempty=true
+						return false
+					}
+					else if(this.surepwd!=this.loginpwd){
+						this.surealert="确认密码和登录密码不一致"
+						this.sureisempty=false;
+						return false
+					}
+					else{
+						this.surealert=""
+						this.sureisempty=false
+						return true
+					}
+				},
+				check1(val){
+					if(val==""){
+						this.checkalert="请认真阅读注册协议，并同意相关服务条款"
+						return false
+					}
+					else{
+						this.checkalert=""
+						return true
+					}
+				},
+				testtime(val){
+					if(val==""){
+						vm.birthalert=""
+						/*vm.birthisempty=true;*/
+						return false
+					}
+					else{
+						vm.birthalert=""
+						vm.birthisempty=false;
+						return true
+					}
+				},
+				finishregist:function(){
+						//进行报空的研究
+					//进行时间的判定
+
+					var t=vm.testtime(vm.$refs.xixi.value)
+		 			var c1=vm.china1(vm.chinafirst);
+			 		var c2=vm.china2(vm.chinalast)
+			 		var e1=vm.english1(vm.englishfirst);
+			 		var e2=vm.english2(vm.englishlast);
+			 		var car1=vm.card1(vm.cardnum);
+			 		var p1=vm.phone1(vm.phonenum);
+			 		var pi1=vm.pic1(vm.piccode);
+			 		var m1=vm.msg1(vm.msgcode);
+			 		var l1=vm.login1(vm.loginpwd);
+			 		var s1=vm.sure1(vm.surepwd);
+			 		var ch1=vm.check1(vm.check);
+			 		if(t&&c1&&c2&&e1&&e2&&car1&&p1&&pi1&&m1&&l1&&ch1){
+			 			alert("全部true")
+			 		}
+			 		else{
+			 			alert("ajax")
+			 		}
+		 		// 只有上面的所有判定为真时那么才可以进行ajax 数据库验证方法
+		 			
+		 			
+				}
+			}	
+		})
+		
+	</script>
+</html>

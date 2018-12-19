@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js" ></script>
+		<script type="text/javascript" src="js/vue2.5.js"></script>
+		<title></title>
+
+	</head>
+    <body style="text-align: center;">
+		<div id="app" style="display: inline-block;">
+			<div>
+			<button type="button" @click="changeiframe"> 改变框架src</button>
+			</div>
+		<iframe :src="myiframe" ref="my" id="iframepage"  scrolling="no"  frameborder="" onload="iFrameHeight()"></iframe>
+		</div>
+	</body>
+	<script>
+		var vm = new Vue({
+			el:'#app',
+			data: {
+				myiframe: "img/air1.jpg"
+			},
+			methods: {
+				changeiframe() {
+					if(vm.myiframe=="img/air1.jpg") {
+						vm.myiframe = "img/img1.jpg"
+						
+					}
+					else {
+						vm.myiframe="img/air1.jpg"
+					}
+					
+				},
+				iFrameHeight() {	
+					
+					iFrameHeight()
+				}
+			}
+		})
+		function iFrameHeight() {
+			var ifm = document.getElementById("iframepage");
+			console.log(document.frames)
+			var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;
+			if(ifm != null && subWeb != null) {
+				console.log(subWeb.body.getElementsByTagName("img"))
+				ifm.height = subWeb.body.getElementsByTagName("img")[0].scrollHeight;
+				ifm.width = subWeb.getElementsByTagName("img")[0].scrollWidth;
+				console.log(ifm.height)
+				console.log(ifm.width)
+			}
+		}
+	</script>
+
+</html>

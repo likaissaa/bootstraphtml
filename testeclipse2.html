@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		.div1{font-size:30px}
+		.selected{border:1px solid red}
+		</style>
+		<script type="text/javascript" src="js/lib/vue.js" ></script>
+		<script type="text/javascript" src="js/lib/jsoncookie.js" ></script>
+	</head>
+	<body>
+		<div id="app1">
+			<div v-on:click="testaddress($index)" v-for="addlist in addlists" v-bind:class="['div1',addlist.isselected?'selected':'']">{{addlist.detail}}</div>
+		</div>
+		<script>
+			var vm=new Vue({
+				el:'#app1',
+				data:{
+                     addlists:[],
+				},
+				methods:{
+					testaddress:function(index){
+					var id=null;
+					for(var i=0;i<vm.addlists.length;i++)
+					{
+					 if(i==index)
+					 {
+					 vm.addlists[index].isselected=true;
+					 alert("我是"+index+"而且"+vm.addlists[index].isselected);
+					 var testaddress=JSON.stringify(vm.addlists[index].detail);		 
+				     sessionStorage.setItem("testaddress",testaddress);
+					 }
+					 else
+					 {
+					 vm.addlists[i].isselected=false;
+					 }
+					}
+						
+					   window.location.href="testeclipse.html";
+					}
+				},
+			})
+			window.onload=function(){
+				getSth();
+				var add=sessionStorage.getItem("addressstr");
+				var addressdetail=JSON.parse(add);
+/*				var data=getjsoncookie();
+				var addressdetail=data.addressstr;*/
+				for(var i=0;i<vm.addlists.length;i++)
+				{
+				/*  alert("vm="+vm.addlists[i].detail+"detail="+addressdetail);*/  
+				  if(addressdetail==vm.addlists[i].detail)
+				  {
+				  vm.addlists[i].isselected=true;
+				  }
+				  else
+				  {
+				  vm.addlists[i].isselected=false;
+				  }
+				}
+				//如果jsoncookie有传递数据过来那么嘿嘿，我就将当前小伙伴的isselected值设置为true;
+			}
+           
+            function getSth(){
+            	for(var i=0;i<3;i++)
+            	{
+            		if(i==1)
+            		{var addlist=
+            		  {
+            			detail:"北京",
+            			isselected:false
+            		  }
+            		  vm.addlists.push(addlist)
+            	    }
+            		else if(i==2)
+            		{var addlist=
+            		  {
+            			detail:"上海",
+            			isselected:false
+            		  }
+            		  vm.addlists.push(addlist)
+            	    }
+            		else
+            		{var addlist=
+            		  {
+            			detail:"厦门",
+            			isselected:false
+            		  }
+            		  vm.addlists.push(addlist)
+            	    }
+               }
+            	
+            }
+		</script>
+	</body>
+</html>

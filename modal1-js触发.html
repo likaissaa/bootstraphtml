@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/login.css" />
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/vue2.js" ></script>
+		<title></title>
+		<style>
+		.haha{
+			background-color:;
+			background-image: linear-gradient(rabg(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+			background-size:40px 40px;
+		}
+
+		</style>
+	</head>
+	<body>
+		<button type="button" class="btn btn-primary">点击我</button>
+		<div  style="width:200px;height:50px;border:1px solid red;">
+			<div style="float: left;">123123</div>
+			<div style="float:right;">23423</div>
+		</div>
+		<div class="modal fade" id="mymodal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close"  data-dismiss="modal">
+							<span>&times;</span>
+						</button>
+						<h4 class="modal-title">模拟弹出框</h4>
+					</div>
+					<div class="modal-body">
+						<p>模拟弹出窗主题内容</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary">保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	
+	
+	<script type="text/javascript">
+		
+				if(type=="2"){
+						var src = $(obj).attr("src");
+						$("#mymodal").css("display","block")
+						$("#video").attr("src", src);
+					}
+					else if(type=="3"){
+						var src = $(obj).attr("data-path");
+						$("#mymodal").css("display","block")
+						$("#video").attr("src", src);
+						$("#video").addAttr("autoplay");
+					}
+					else if(type=="4"){
+						var src = $(obj).attr("src");
+						$("#mymodal").css("display","block")
+						$("#video").attr("src", src);
+						$("#video").addAttr("autoplay");
+					}
+					
+					取消哪里写
+					$("#mymodal").css("display","none")
+	</script>
+	
+	
+	<script>
+		$(function(){
+			$(".btn").click(function(){
+				$("#mymodal").modal("toggle");
+			});
+		})
+		/*$('#mymodal').on('hidden.bs.modal', function (e) {
+   // alert("弹出的内容")
+   alert(444);
+})
+		$('#mymodal').on('hide.bs.modal', function (e) {
+   // alert("弹出的内容")
+   alert(333);
+})
+		$('#mymodal').on('show.bs.modal', function (e) {
+   // alert("弹出的内容")
+   alert(111);
+})
+		$('#mymodal').on('shown.bs.modal', function (e) {
+   // alert("弹出的内容")
+   alert(222);
+})*/
+	</script>
+</html>

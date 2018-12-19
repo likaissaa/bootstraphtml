@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bazel.build.css" />
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/underscore.js" ></script>
+		<title></title>
+		<style>
+			.test {
+				position: absolute;
+				width: 32px;
+				height: 32px;
+				background: #40AFFE;
+				background-image: linear-gradient(to right, transparent 50%, #F07141 0);
+			}
+			
+			.test::before {
+				content: '';
+				display: block;
+				margin-left: 50%;
+				height: 100%;
+				border-radius: 0 100% 100% 0 / 50%;
+				background-color: #F07141;
+				transform-origin: left;
+				transform: rotate(.20turn);
+			}
+			
+			.test1 {
+				width: 200px;
+				height: 150px;
+				border-radius: 50% /100% 100% 0 0;
+				background: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--
+			1 分页 组件 暂时 无法 进行数据测试
+			2 做一款适用于 bootstrap2 的样式分页库
+			3 modidydata 初始化无效
+			4 样式调整
+		-->
+		<div id="app">
+			<div class="row">
+				<div class="col-md-8">
+					<input type="text" class="form-control" />
+				</div>
+				<div class="col-md-4"><input type="text" class="form-control" /></div>
+			</div>
+
+			<input type="text" v-model.trim="hehe" />
+			<input type="text" value="ganni" />
+			<!--<button type="button" @click="clickme">clickme</button>-->
+			<a @click="clickme">clickme</a>
+			
+			<img src="" id="myimg" />
+			
+			<div class="hehe">11</div>
+			<div class="hehe">22</div>
+			<div class="hehe">33</div>
+			<div class="hehe">44</div>
+			<div class="hehe">55</div>
+			
+			
+		</div>
+		<button id="execute">执行</button>
+		<button id="undo">点击我执行命令</button>
+		</div>
+	</body>
+</html>
+<script>
+	var vm = new Vue({
+		el: '#app',
+		data: {
+			form: "",
+			hehe: ""	},
+		mounted: function() {
+
+		},
+		methods: {
+			clickme() {
+				alert("长度为" + vm.hehe.length);
+			}
+		}
+	})
+	
+	var Tv = {
+		open: function(){
+			console.log("打开电视机");
+		},
+		close: function(){
+			console.log("关上电视机");
+		}
+	}
+	
+//	class TvCommand {
+//		constructor(receiver) {
+//			this.receiver = receiver
+//		}
+//		execute(){
+//			this.receiver.open();
+//		}
+//		undo(){
+//			this.receiver.close();
+//		}
+//	}
+//	var setCommand = function(command) {
+//		document.getElementById("execute").onclick = function() {
+//			command.execute();
+//		}
+//		document.getElementById("undo").onclick = function() {
+//			command.undo()
+//		}
+//	}
+//	setCommand(new TvCommand(Tv))
+	
+	var createCommand = function(receiver) {
+		var execute = function(){ // 匿名函数
+			return receiver.open()
+		}
+		var undo = function() {
+			return receiver.close()
+		}
+		return {
+			execute: execute,
+			undo: undo
+		}
+	}
+	var setCommand = function(func) {
+		document.getElementById("execute").onclick = function() {
+			func.hehe();
+		}
+		document.getElementById("undo").onclick = function() {
+			command.undo()
+		}
+	}
+//	setCommand(func())
+	
+	var func = function(){
+		var a =1;
+		var hehe = function() {
+			a++;
+			alert(a)
+			return "草泥马";
+		}
+		return {
+			gaga: hehe
+		}
+		
+	}
+	
+	// 冷静对待
+	var throttle = function(fn, intercal) { 
+		var _self = fn,timer, firstTime = true; // 抓取回调函数，定时器，以及是否头一次
+		return function() {
+			var arg = arguments // 参数保留
+			_me = this // 指向保留
+			if(firstTime){ // 首次执行就让它执行 不用定时
+				_self.apply(_me,args)
+				return firstTime=false;
+			}
+			if(timer) {
+				return false
+			}
+			timer = setTimeout(function(){
+				clearTimeout(timer)
+				timer= null;
+				_self.apply(_me,args)
+
+			},interval || 500)
+			
+		}
+	}
+	
+	window.resize = throttle(function() {
+			console.log(111)
+	})
+</script>
