@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+		<link rel="stylesheet" href="css/bootstrap2/bootstrap.css" />
+		<link rel="stylesheet" href="css/dropzone.css" />
+		<link rel="stylesheet" href="css/bazel.build.css" />
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/dropComponent.js" ></script>
+
+</head>
+<body>
+	<div id="dropzone" >
+	
+	
+		<form class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label">附件：</label>
+				<div class="controls">
+					<dropzone  url="/a/test/fileyh" @getimgurl = "getimgurl" :maxfilesize=4  formclass="span6" type="图片" typecode="image/*" :uploadmultiple="ganni">
+					</dropzone>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+<script>
+	
+	var vm = new Vue({
+		el:'#dropzone',
+		data: {
+			hehe: 2,
+			ganni: false
+		},
+		methods: {
+			getimgurl:function(data) {
+				console.log(data);
+			}
+		}
+	})
+</script>
+</html>
