@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var Folder = function(name) {
+			this.name = name;
+			this.parent = null;
+			this.files = [];
+		}
+		Folder.prototype.add = function(file) { 
+			file.parent = this;
+			this.files.push(file);
+		}
+		
+		Folder.prototype.scan = function() {
+			console.log('开始扫描文件夹'+this.name);
+			for(var i=0;i<this.files.length;i++) { // 扫描文件夹的长度
+				var file = this.files[i];  
+				file.scan();  // 扫描文件夹
+			}
+		}
+		
+		Folder.prototype.remove = function() {
+			if(!this.parent) {
+				return;
+			}
+			
+			
+			for(var i=0;i<this.parent.files.length;i++){ 
+				var file = this.parent.files [i];
+				if(file === this) {
+					this.parent.files.splice(i, 1);
+				}
+			}
+			
+		}
+		
+		var File = function(name) {
+			this.name = name;
+			this.parent = null;
+		}
+		File.prototype.add = function() { // 文件下面不能添加 文件夹
+			throw new Error("不能添加在文件下面");
+		}
+		
+		File.prototype.scan = function() { // 扫描
+			console.log('开始扫描文件'+ this.name);
+		}
+		File.prototype.remove = function() {
+			if(!this.parent) {
+				return;
+			}
+			for(var i=0;i<this.parent.files.length;i++) {
+				console.log(this.parent)
+				var file = this.parent.files[i];
+				if(file === this) {
+					this.parent.files.splice(i,1)
+					}
+			}
+		}
+		// folder(    folder1(设计-开发),  file1())
+		
+		// 移除文件 功能
+		var folder = new Folder('学习资料');
+		var folder1 = new Folder(' JavaScript');
+		var file1 = new File('深入浅出Node.js');
+		folder1.add(new File('JavaScript 设计模式-开发模式'));
+		folder.add(folder1);
+		folder.add(file1);
+		file1.remove()
+		folder.scan();
+	</script>
+</html>

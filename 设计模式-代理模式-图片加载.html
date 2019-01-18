@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var myImage = (function() {
+			var imgNode = document.createElement('img');
+			document.body.appendChild(imgNode);
+			return {
+				setSrc: function( src ) {
+					imgNode.src = src;
+				}
+			}
+		})()
+		
+		var proxyImage = (function() {
+			var img = new Image;
+			img.onload = function() {
+				myImage.setSrc(this.src)
+			}
+			
+			return {
+				setSrc: function(src) {
+					myImage.setSrc('img/loader.png');
+					img.src = src;
+				}
+			}
+		})()
+		
+		myImage.setSrc('img/网管地图.jpg');
+	</script>
+</html>

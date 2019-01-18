@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		/**
+		 * 条件分之语句提炼成函数
+		 */
+		var isSummer = function() {
+			var date = new Date();
+			return date.getMonth() >=6 && date.getMonth() <=9
+		}
+		
+		var getPrice = function(price) {
+			if(isSummer()) {
+				return price * 0.8
+			}
+			return price;
+		}
+	</script>
+</html>

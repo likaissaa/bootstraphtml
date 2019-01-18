@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		
+		/**
+		 * 故事背景，小明和小红去旅行
+		 * 发布-订阅的功能 提取出来
+		 */
+		var salesOffices = {}; // 售楼处
+		salesOffices.clientList = []; // 存放订阅者的列表
+		salesOffices.listen = function(key,fn) { // 增加订阅者
+			if(!this.clientList[key]) {
+				this.clientList[key] = [];
+			}
+			this.clientList[key].push(fn); // 订阅的信息添加进 缓存列表
+		}
+		
+		salesOffices.trigger = function() {
+			var key = Array.prototype.shift.call(arguments);
+			fns = this.clientList[key];
+			
+			if(!fns || fns.length === 0) {
+				return false;
+			}
+			for(var i=0;i<fns.length;i++) {
+				var fn = fns[i]
+				fn.apply(this, arguments);
+			}
+			
+		}
+		
+		// 进行简单的测试
+		
+		salesOffices.listen( 'hehe',function(price) { // 小明
+			console.log( '价格=' + price);
+		})
+		
+		salesOffices.listen( 'gaga',function(price) { // 小红
+			console.log('价格=' + price);
+		})
+		
+		salesOffices.trigger('hehe', 2000000); // 输出200w 88平
+		salesOffices.trigger('gaga', 3000000); // 输出300w 110平
+		
+		
+	</script>
+</html>

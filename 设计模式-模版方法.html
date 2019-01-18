@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script>
+//		var Coffee = function() {}
+//		
+//		Coffee.prototype.boilWater = function() {
+//			console.log('把水煮沸');
+//		}
+//		
+//		Coffee.prototype.brewCoffeeGriends = function() {
+//			console.log('把沸水用来泡咖啡');
+//		}
+//		Coffee.prototype.pourInCup = function() {
+//			console.log('把咖啡倒进杯子');
+//		}
+//		
+//		Coffee.prototype.addSugarAndMilk = function() { // 加糖和牛奶
+//			console.log('加糖和牛奶');
+//		}
+//		Coffee.prototype.init = function() {
+//			this.boilWater();
+//			this.brewCoffeeGriends();
+//			this.pourInCup();
+//			this.addSugarAndMilk();
+//		}
+//		var coffee = new Coffee();
+//		coffee.init()
+		
+		
+		var Beverage = function() {}
+		Beverage.prototype.boilWater = function() {
+			console.log('把水煮沸');
+		}
+		Beverage.prototype.brew = function() {}
+		Beverage.prototype.pourInCup = function() {}
+		Beverage.prototype.addCondiments = function() {}
+		Beverage.prototype.customerWantsCondiments = function() {
+			return true; // 默认需要调料
+		}
+		Beverage.prototype.init = function() {
+			this.boilWater();
+			this.brew();
+			this.pourInCup();
+			if(this.customerWantsCondiments()) {
+				this.addCondiments();
+			}
+			
+		}
+		
+		var Coffee = function() {}
+		Coffee.prototype = new Beverage();
+		Coffee.prototype.brew = function() {
+			console.log('把沸水用来煮咖啡')
+		}
+		Coffee.prototype.pourInCup = function() {
+			console.log('把咖啡倒进杯子')
+		}
+		Coffee.prototype.addCondiments = function() { // 添加调料
+			console.log('加糖和牛奶');
+		}
+		Coffee.prototype.customerWantsCondiments = function() {
+			return window.confirm(' 请问需要调料吗 ？');
+		}
+		var Coffee = new Coffee();
+		Coffee.init();
+	</script>
+</html>
